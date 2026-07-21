@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "check": "tsc --project tsconfig.json --noEmit",
+    "check": "tsc --project tsconfig.json --noEmit && tsc --project tsconfig.test.json",
     "test:unit": "vitest run --passWithNoTests"
   },
   "devDependencies": {
