@@ -1,0 +1,20 @@
+{
+  "name": "grande-burrito",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Brand-led SvelteKit and Sanity website for Grande Burrito in Freeport, Maine.",
+  "packageManager": "pnpm@11.15.1",
+  "engines": {
+    "node": ">=22 <23",
+    "pnpm": ">=11 <12"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter './apps/*' run dev",
+    "build": "pnpm -r --if-present run build",
+    "check": "pnpm -r --if-present run check",
+    "test": "pnpm run test:unit && pnpm run test:e2e",
+    "test:unit": "pnpm -r --if-present run test:unit",
+    "test:e2e": "pnpm --filter @grande/web --if-present run test:e2e",
+    "content:snapshot": "pnpm --filter @grande/content --if-present run snapshot"
+  }
+}

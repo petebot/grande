@@ -22,7 +22,7 @@ and validated independently after the shared content foundation exists.
 **Purpose**: Establish the two deployable applications, one typed shared boundary, and
 repeatable project tooling.
 
-- [ ] T001 Create the pnpm workspace, Node 22 pin, and root scripts in `pnpm-workspace.yaml`, `package.json`, and `.nvmrc`
+- [x] T001 Create the pnpm workspace, Node 22 pin, and root scripts in `pnpm-workspace.yaml`, `package.json`, and `.nvmrc`
 - [ ] T002 Create the SvelteKit TypeScript application with Vercel adapter in `apps/web/`
 - [ ] T003 [P] Create the Sanity Studio application and development dataset configuration in `apps/studio/`
 - [ ] T004 [P] Create the shared TypeScript content package with build exports in `packages/content/`
