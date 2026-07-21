@@ -1,0 +1,56 @@
+name: Spec Kit task
+description: Implement one dependency-ready task from the active Spec Kit backlog
+title: "T000: "
+labels:
+  - task
+body:
+  - type: input
+    id: task_id
+    attributes:
+      label: Spec Kit task ID
+      description: Use the exact ID from the active tasks.md file.
+      placeholder: T024
+    validations:
+      required: true
+  - type: dropdown
+    id: story
+    attributes:
+      label: User story or phase
+      options:
+        - Setup
+        - Foundation
+        - US1 — Decide and Visit
+        - US2 — Experience the Brand
+        - US3 — Maintain Daily Information
+        - US4 — Transfer and Operate
+        - Cross-cutting
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source task and context
+      description: Paste the task line and link to the relevant spec, plan, or contract section.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance evidence
+      description: State the independently observable result and the commands or review needed.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: List blocking task IDs or write "None".
+    validations:
+      required: true
+  - type: checkboxes
+    id: constitution
+    attributes:
+      label: Constitution check
+      options:
+        - label: I reviewed the project constitution and noted relevant quality gates.
+          required: true

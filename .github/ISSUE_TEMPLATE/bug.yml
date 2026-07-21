@@ -1,0 +1,43 @@
+name: Bug report
+description: Report behavior that diverges from the specification or accepted implementation
+title: "fix: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: Link the governing requirement or acceptance scenario when possible.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Include viewport, content state, date/timezone, and dependency state when relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Add screenshots, logs with secrets removed, or failing-test details.
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      options:
+        - Blocks a primary customer or editor journey
+        - Produces incorrect business information
+        - Accessibility or performance regression
+        - Visual or content defect
+        - Developer workflow defect
+    validations:
+      required: true
