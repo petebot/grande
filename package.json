@@ -2,6 +2,7 @@
   "name": "grande-burrito",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "description": "Brand-led SvelteKit and Sanity website for Grande Burrito in Freeport, Maine.",
   "packageManager": "pnpm@11.15.1",
   "engines": {
@@ -11,10 +12,27 @@
   "scripts": {
     "dev": "pnpm --parallel --filter './apps/*' run dev",
     "build": "pnpm -r --if-present run build",
-    "check": "pnpm -r --if-present run check",
+    "check": "pnpm run format:check && pnpm run lint && pnpm run typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "typecheck": "pnpm -r --if-present run check",
     "test": "pnpm run test:unit && pnpm run test:e2e",
     "test:unit": "pnpm -r --if-present run test:unit",
     "test:e2e": "pnpm --filter @grande/web --if-present run test:e2e",
     "content:snapshot": "pnpm --filter @grande/content --if-present run snapshot"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^22.20.1",
+    "eslint": "^10.7.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-svelte": "^3.22.0",
+    "globals": "^17.7.0",
+    "prettier": "^3.9.6",
+    "prettier-plugin-svelte": "^4.1.1",
+    "typescript-eslint": "^8.65.0",
+    "vitest": "^4.1.10"
   }
 }

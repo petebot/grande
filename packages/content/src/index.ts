@@ -3,4 +3,4 @@
  * implementation tasks land. Keeping this module valid from the first scaffold lets
  * the web and Studio packages depend on one stable package boundary.
  */
-export {};
+export {}

@@ -3,9 +3,14 @@ node_modules/
 .pnpm-store/
 .svelte-kit/
 .sanity/
+.vercel/
 build/
 dist/
 coverage/
+playwright-report/
+test-results/
+.idea/
+.vscode/
 *.log
 .env
 .env.*
