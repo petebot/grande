@@ -1,0 +1,14 @@
+.DS_Store
+node_modules/
+.svelte-kit/
+build/
+dist/
+coverage/
+*.log
+.env
+.env.*
+!.env.example
+
+# Local agent state; project skills under .agents/skills are intentionally tracked.
+.agents/.credentials/
+.agents/.state/
