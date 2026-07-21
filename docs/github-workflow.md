@@ -18,13 +18,13 @@ artifact in the same or a preceding PR before treating the issue as complete.
 Create one organization- or repository-level Project named **Grande Burrito Website**.
 Use these fields:
 
-| Field | Values |
-|---|---|
-| Status | Backlog, Ready, In progress, In review, Blocked, Done |
-| Phase | Setup, Foundation, US1, US2, US3, US4, Release |
-| Priority | P1, P2, P3, P4 |
-| Task ID | Exact `T###` value |
-| Size | XS, S, M, L; split anything larger than L |
+| Field     | Values                                                |
+| --------- | ----------------------------------------------------- |
+| Status    | Backlog, Ready, In progress, In review, Blocked, Done |
+| Phase     | Setup, Foundation, US1, US2, US3, US4, Release        |
+| Priority  | P1, P2, P3, P4                                        |
+| Task ID   | Exact `T###` value                                    |
+| Size      | XS, S, M, L; split anything larger than L             |
 | Milestone | MVP, Brand system, Editor experience, Handoff, Launch |
 
 Recommended views:

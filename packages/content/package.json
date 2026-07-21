@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "check": "tsc --project tsconfig.json --noEmit"
+    "check": "tsc --project tsconfig.json --noEmit",
+    "test:unit": "vitest run --passWithNoTests"
   },
   "devDependencies": {
     "typescript": "^6.0.3"

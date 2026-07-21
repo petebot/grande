@@ -26,7 +26,7 @@ repeatable project tooling.
 - [x] T002 Create the SvelteKit TypeScript application with Vercel adapter in `apps/web/`
 - [x] T003 [P] Create the Sanity Studio application and development dataset configuration in `apps/studio/`
 - [x] T004 [P] Create the shared TypeScript content package with build exports in `packages/content/`
-- [ ] T005 [P] Configure formatting, linting, TypeScript, Svelte checks, Vitest, and Playwright in `eslint.config.js`, `prettier.config.js`, `tsconfig.json`, and `apps/web/playwright.config.ts`
+- [x] T005 [P] Configure formatting, linting, TypeScript, Svelte checks, Vitest, and Playwright in `eslint.config.js`, `prettier.config.js`, `tsconfig.json`, and `apps/web/playwright.config.ts`
 - [ ] T006 Document public versus server-only configuration and add validated loaders in `.env.example`, `apps/web/src/lib/server/env.ts`, and `apps/studio/sanity.cli.ts`
 - [ ] T007 Add CI install, check, unit-test, snapshot-validation, build, and browser-test jobs in `.github/workflows/ci.yml`
 

@@ -1,6 +1,6 @@
 name: Spec Kit task
 description: Implement one dependency-ready task from the active Spec Kit backlog
-title: "T000: "
+title: 'T000: '
 labels:
   - task
 body:
