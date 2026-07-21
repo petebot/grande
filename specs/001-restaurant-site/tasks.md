@@ -43,7 +43,7 @@ representative data required by every story.
 **⚠️ CRITICAL**: No user-story UI or Studio workflow begins until this phase passes.
 
 - [x] T008 Define versioned normalized public-content, money, media, provenance, and schedule types in `packages/content/src/types.ts`
-- [ ] T009 [P] Create clearly fictional development fixtures covering long copy, missing media, schedule edges, and menu states in `packages/content/test/fixtures/development-content.ts`
+- [x] T009 [P] Create clearly fictional development fixtures covering long copy, missing media, schedule edges, and menu states in `packages/content/test/fixtures/development-content.ts`
 - [ ] T010 [P] Write failing normalization and production-provenance tests in `packages/content/tests/normalize.test.ts`
 - [ ] T011 Implement deterministic validation, normalization, ordering, URL safety, and price conversion in `packages/content/src/normalize.ts`
 - [ ] T012 Define the single published/draft GROQ projection and query parameters in `packages/content/src/queries.ts`
