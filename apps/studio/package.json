@@ -1,0 +1,26 @@
+{
+  "name": "@grande/studio",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "check": "tsc --project tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@sanity/vision": "^6.5.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "sanity": "^6.5.0",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.10",
+    "typescript": "^6.0.3"
+  }
+}
