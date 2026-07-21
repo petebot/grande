@@ -23,7 +23,7 @@ and validated independently after the shared content foundation exists.
 repeatable project tooling.
 
 - [x] T001 Create the pnpm workspace, Node 22 pin, and root scripts in `pnpm-workspace.yaml`, `package.json`, and `.nvmrc`
-- [ ] T002 Create the SvelteKit TypeScript application with Vercel adapter in `apps/web/`
+- [x] T002 Create the SvelteKit TypeScript application with Vercel adapter in `apps/web/`
 - [ ] T003 [P] Create the Sanity Studio application and development dataset configuration in `apps/studio/`
 - [ ] T004 [P] Create the shared TypeScript content package with build exports in `packages/content/`
 - [ ] T005 [P] Configure formatting, linting, TypeScript, Svelte checks, Vitest, and Playwright in `eslint.config.js`, `prettier.config.js`, `tsconfig.json`, and `apps/web/playwright.config.ts`
