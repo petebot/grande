@@ -1,4 +1,9 @@
 import { defineConfig, devices } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
+
+const e2eSnapshotPath = fileURLToPath(
+  new URL('./test-results/e2e-content.snapshot.json', import.meta.url),
+)
 
 export default defineConfig({
   testDir: './tests/e2e',
@@ -24,7 +29,14 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm run build && pnpm run preview --host 127.0.0.1',
+    command:
+      'pnpm exec tsx tests/e2e/generate-content-snapshot.ts && pnpm run build && pnpm run preview --host 127.0.0.1',
+    env: {
+      ...process.env,
+      GRANDE_E2E_MODE: '1',
+      GRANDE_E2E_NOW: '2030-07-15T16:00:00.000Z',
+      GRANDE_E2E_SNAPSHOT_PATH: e2eSnapshotPath,
+    },
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
