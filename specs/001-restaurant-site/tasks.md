@@ -49,8 +49,8 @@ representative data required by every story.
 - [x] T012 Define the single published/draft GROQ projection and query parameters in `packages/content/src/queries.ts`
 - [x] T013 [P] Write failing snapshot generation and invalid-fallback tests in `packages/content/tests/snapshot.test.ts`
 - [x] T014 Implement published snapshot generation with schema/revision metadata and provisional-content rejection in `packages/content/src/snapshot.ts` and `scripts/generate-content-snapshot.ts`
-- [ ] T015 [P] Write failing timeout, malformed-live-response, and full-snapshot-fallback tests in `apps/web/src/lib/server/content.test.ts`
-- [ ] T016 Implement bounded Sanity fetching, validation, cache policy, diagnostics, and whole-snapshot fallback in `apps/web/src/lib/server/content.ts`
+- [x] T015 [P] Write failing timeout, malformed-live-response, and full-snapshot-fallback tests in `apps/web/src/lib/server/content.test.ts`
+- [x] T016 Implement bounded Sanity fetching, validation, cache policy, diagnostics, and whole-snapshot fallback in `apps/web/src/lib/server/content.ts`
 - [ ] T017 Wire root error handling, security headers, preview isolation, and server logging in `apps/web/src/hooks.server.ts` and `apps/web/src/routes/+error.svelte`
 
 **Checkpoint**: The same typed projection powers live, preview, fixture, and snapshot
