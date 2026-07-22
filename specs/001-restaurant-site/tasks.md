@@ -69,14 +69,14 @@ Sanity forced to time out.
 
 ### Tests for User Story 1
 
-- [ ] T018 [P] [US1] Write failing interval, split-day, overnight, exception, and daylight-saving tests in `apps/web/src/lib/hours/resolve.test.ts`
+- [x] T018 [P] [US1] Write failing interval, split-day, overnight, exception, and daylight-saving tests in `apps/web/src/lib/hours/resolve.test.ts`
 - [ ] T019 [P] [US1] Write failing mobile, no-JavaScript, and CMS-outage journey tests in `apps/web/tests/e2e/decide-and-visit.spec.ts`
 - [ ] T020 [P] [US1] Write failing page metadata and Restaurant JSON-LD consistency tests in `apps/web/src/routes/page.server.test.ts`
 - [ ] T021 [P] [US1] Write a failing in-session announcement and hours-expiry test using a controlled clock in `apps/web/tests/e2e/scheduled-content.spec.ts`
 
 ### Implementation for User Story 1
 
-- [ ] T022 [US1] Implement Eastern Time schedule resolution and next-transition calculation in `apps/web/src/lib/hours/resolve.ts`
+- [x] T022 [US1] Implement Eastern Time schedule resolution and next-transition calculation in `apps/web/src/lib/hours/resolve.ts`
 - [ ] T023 [US1] Load normalized content and current status for the public route in `apps/web/src/routes/+page.server.ts`
 - [ ] T024 [P] [US1] Implement semantic current-status and weekly-hours components in `apps/web/src/lib/components/HoursStatus.svelte` and `apps/web/src/lib/components/WeeklyHours.svelte`
 - [ ] T025 [P] [US1] Implement ordered menu categories, item states, prices, and verified labels in `apps/web/src/lib/components/MenuSection.svelte` and `apps/web/src/lib/components/MenuItem.svelte`
