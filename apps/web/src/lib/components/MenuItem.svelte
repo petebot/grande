@@ -77,7 +77,7 @@
 
   h4 {
     margin: 0;
-    font-family: var(--font-display);
+    font-family: var(--font-family-display);
     font-size: clamp(1.25rem, 5.8vw, 1.75rem);
     line-height: 1.05;
   }

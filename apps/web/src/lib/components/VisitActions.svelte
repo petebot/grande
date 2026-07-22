@@ -22,13 +22,13 @@
 
   a {
     display: inline-flex;
-    min-height: 44px;
+    min-height: var(--target-minimum);
     align-items: center;
     justify-content: center;
     padding: 0.6rem 0.75rem;
-    border: var(--border-ink);
+    border: var(--border-strong);
     border-radius: var(--radius-pill);
-    color: var(--color-brand-ink);
+    color: var(--color-text);
     font-weight: 800;
     line-height: 1.15;
     text-align: center;
@@ -36,12 +36,12 @@
   }
 
   a:hover {
-    background: var(--color-paper-warm);
+    background: var(--color-surface-subtle);
   }
 
   a.primary {
-    background: var(--color-brand-ink);
-    color: var(--color-paper);
+    background: var(--color-surface-brand);
+    color: var(--color-on-brand);
   }
 
   @media (min-width: 48rem) {

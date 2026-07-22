@@ -33,8 +33,8 @@
     width: min(100%, 60rem);
     padding: clamp(0.5rem, 2.5vw, 1.25rem);
     overflow: hidden;
-    background: var(--color-brand-tan);
-    color: var(--color-brand-ink);
+    background: var(--brand-mark-field);
+    color: var(--brand-mark-ink);
   }
 
   svg {
@@ -50,12 +50,12 @@
   }
 
   .rivet {
-    fill: var(--color-brand-tan);
+    fill: var(--brand-mark-field);
   }
 
   .wordmark,
   .descriptor {
-    font-family: var(--font-brand);
+    font-family: var(--font-family-brand);
     font-weight: 400;
   }
 

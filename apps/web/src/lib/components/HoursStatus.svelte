@@ -111,9 +111,9 @@
     display: grid;
     gap: 0.2rem;
     padding: 1rem;
-    border: var(--border-ink);
+    border: var(--border-strong);
     border-radius: var(--radius-medium);
-    background: var(--color-paper);
+    background: var(--color-surface-page);
   }
 
   p {
@@ -121,15 +121,15 @@
   }
 
   .status {
-    color: var(--color-brand-ink);
-    font-family: var(--font-display);
+    color: var(--color-text);
+    font-family: var(--font-family-display);
     font-size: clamp(1.5rem, 7vw, 2.2rem);
     font-weight: 700;
     line-height: 1;
   }
 
   .status.open {
-    color: var(--color-brand-ink);
+    color: var(--color-text);
   }
 
   .transition {

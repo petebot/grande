@@ -38,7 +38,7 @@
   h2,
   .category > h3 {
     margin: 0;
-    font-family: var(--font-display);
+    font-family: var(--font-family-display);
     line-height: 1;
   }
 

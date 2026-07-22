@@ -86,12 +86,12 @@
     justify-content: space-between;
     gap: 1rem;
     padding: 1rem;
-    border-left: 0.4rem solid var(--color-brand-ink);
-    background: var(--color-paper-warm);
+    border-left: 0.4rem solid var(--color-border-strong);
+    background: var(--color-surface-subtle);
   }
 
   aside.urgent {
-    border-left-color: var(--color-brand-tan);
+    border-left-color: var(--color-notice-urgent);
   }
 
   h2,
@@ -100,8 +100,8 @@
   }
 
   h2 {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-heading-small);
   }
 
   p {

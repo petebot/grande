@@ -32,4 +32,11 @@ test.describe('public visual system baselines', () => {
 
     await expect(page).toHaveScreenshot('stale-content-state.png', SCREENSHOT_OPTIONS)
   })
+
+  test('preserves the living design-system specimen', async ({ page }) => {
+    await page.goto('/system')
+    await expect(page.getByTestId('design-system')).toBeVisible()
+
+    await expect(page).toHaveScreenshot('design-system.png', SCREENSHOT_OPTIONS)
+  })
 })

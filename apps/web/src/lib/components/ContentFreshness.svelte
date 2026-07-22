@@ -31,8 +31,8 @@
     padding: 0.7rem 0.8rem;
     border: var(--border-hairline);
     border-radius: var(--radius-small);
-    background: var(--color-paper-warm);
-    font-size: 0.85rem;
+    background: var(--color-surface-subtle);
+    font-size: var(--font-size-small);
     line-height: 1.4;
   }
 

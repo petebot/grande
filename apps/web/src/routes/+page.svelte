@@ -97,11 +97,11 @@
 
 <style>
   main {
-    width: min(100%, 76rem);
+    width: min(100%, var(--width-page));
     min-height: 100vh;
     margin: 0 auto;
     padding: clamp(1rem, 4vw, 3rem);
-    background: var(--color-paper);
+    background: var(--color-surface-page);
     box-shadow: var(--shadow-sheet);
   }
 
@@ -117,7 +117,7 @@
     display: grid;
     gap: 1.5rem;
     padding-bottom: 2rem;
-    border-bottom: var(--border-ink);
+    border-bottom: var(--border-strong);
   }
 
   .intro,
@@ -129,7 +129,7 @@
 
   .eyebrow {
     margin: 0;
-    color: var(--color-brand-ink);
+    color: var(--color-text);
     font-size: 0.75rem;
     font-weight: 900;
     letter-spacing: 0.08em;
@@ -138,21 +138,21 @@
   h1,
   h2,
   h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-family-display);
   }
 
   h1 {
     max-width: 15ch;
     margin: 0;
-    font-size: clamp(2.6rem, 13vw, 6.5rem);
+    font-size: var(--font-size-display);
     letter-spacing: -0.04em;
-    line-height: 0.92;
+    line-height: var(--line-height-display);
   }
 
   .hero-body {
-    max-width: 60ch;
+    max-width: var(--width-prose);
     margin: 0;
-    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-size: var(--font-size-lead);
     line-height: 1.55;
   }
 
@@ -168,7 +168,7 @@
   .story,
   .visit {
     padding: clamp(1.25rem, 5vw, 3rem);
-    background: var(--color-paper-warm);
+    background: var(--color-surface-subtle);
   }
 
   .story h2,
@@ -180,7 +180,7 @@
 
   .story p,
   .story ul {
-    max-width: 68ch;
+    max-width: var(--width-reading);
     line-height: 1.6;
   }
 
@@ -212,7 +212,7 @@
     justify-content: space-between;
     gap: 1rem;
     padding-top: 1.25rem;
-    border-top: var(--border-ink);
+    border-top: var(--border-strong);
     font-size: 0.85rem;
   }
 
