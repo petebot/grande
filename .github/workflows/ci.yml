@@ -55,7 +55,7 @@ jobs:
         run: pnpm test:unit
 
       - name: Validate published content snapshot
-        run: pnpm content:snapshot
+        run: pnpm content:snapshot:validate
 
       - name: Build workspace
         run: pnpm build
