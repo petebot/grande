@@ -71,7 +71,7 @@ Sanity forced to time out.
 
 - [x] T018 [P] [US1] Write failing interval, split-day, overnight, exception, and daylight-saving tests in `apps/web/src/lib/hours/resolve.test.ts`
 - [x] T019 [P] [US1] Write failing mobile, no-JavaScript, and CMS-outage journey tests in `apps/web/tests/e2e/decide-and-visit.spec.ts`
-- [ ] T020 [P] [US1] Write failing page metadata and Restaurant JSON-LD consistency tests in `apps/web/src/routes/page.server.test.ts`
+- [X] T020 [P] [US1] Write failing page metadata and Restaurant JSON-LD consistency tests in `apps/web/src/routes/page.server.test.ts`
 - [ ] T021 [P] [US1] Write a failing in-session announcement and hours-expiry test using a controlled clock in `apps/web/tests/e2e/scheduled-content.spec.ts`
 
 ### Implementation for User Story 1
@@ -83,7 +83,7 @@ Sanity forced to time out.
 - [x] T026 [P] [US1] Implement phone, directions, ordering, and in-page menu actions in `apps/web/src/lib/components/VisitActions.svelte`
 - [x] T027 [P] [US1] Implement scheduled operational notices with safe optional links in `apps/web/src/lib/components/Announcement.svelte`
 - [x] T028 [US1] Compose server-rendered hero, status, actions, menu, story, and visit sections in `apps/web/src/routes/+page.svelte`
-- [ ] T029 [US1] Generate canonical metadata and Restaurant/Menu JSON-LD exclusively from normalized published content in `apps/web/src/lib/components/Seo.svelte` and `apps/web/src/routes/+layout.server.ts`
+- [X] T029 [US1] Generate canonical metadata and Restaurant/Menu JSON-LD exclusively from normalized published content in `apps/web/src/lib/components/Seo.svelte` and `apps/web/src/routes/+layout.server.ts`
 - [ ] T030 [US1] Add a hydration-safe client refresh for current status without hiding server-rendered hours in `apps/web/src/lib/components/HoursStatus.svelte`
 - [x] T031 [US1] Add stale-snapshot and optional-service fallback states without obscuring essentials in `apps/web/src/lib/components/ContentFreshness.svelte` and `apps/web/src/routes/+page.svelte`
 - [ ] T032 [US1] Revalidate current hours and scheduled announcement visibility within five minutes on an already-open page in `apps/web/src/lib/components/HoursStatus.svelte` and `apps/web/src/lib/components/Announcement.svelte`
