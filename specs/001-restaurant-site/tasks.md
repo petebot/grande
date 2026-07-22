@@ -51,7 +51,7 @@ representative data required by every story.
 - [x] T014 Implement published snapshot generation with schema/revision metadata and provisional-content rejection in `packages/content/src/snapshot.ts` and `scripts/generate-content-snapshot.ts`
 - [x] T015 [P] Write failing timeout, malformed-live-response, and full-snapshot-fallback tests in `apps/web/src/lib/server/content.test.ts`
 - [x] T016 Implement bounded Sanity fetching, validation, cache policy, diagnostics, and whole-snapshot fallback in `apps/web/src/lib/server/content.ts`
-- [ ] T017 Wire root error handling, security headers, preview isolation, and server logging in `apps/web/src/hooks.server.ts` and `apps/web/src/routes/+error.svelte`
+- [x] T017 Wire root error handling, security headers, preview isolation, and server logging in `apps/web/src/hooks.server.ts` and `apps/web/src/routes/+error.svelte`
 
 **Checkpoint**: The same typed projection powers live, preview, fixture, and snapshot
 sources; malformed or unavailable live content produces a complete valid fallback.
