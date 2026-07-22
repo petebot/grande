@@ -1,0 +1,3 @@
+{
+  "notice": "No owner-confirmed production snapshot has been generated yet. Run pnpm content:snapshot after production content approval."
+}
