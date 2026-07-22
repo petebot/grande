@@ -93,6 +93,9 @@ importers:
 
   packages/content:
     devDependencies:
+      groq-js:
+        specifier: ^1.30.3
+        version: 1.30.3
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
