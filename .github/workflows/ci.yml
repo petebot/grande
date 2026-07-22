@@ -64,6 +64,8 @@ jobs:
     name: Browser tests
     needs: quality
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
     timeout-minutes: 20
 
     steps:
@@ -84,9 +86,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Install Chromium
-        run: pnpm exec playwright install --with-deps chromium
 
       - name: Run browser tests
         run: pnpm test:e2e

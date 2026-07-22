@@ -105,17 +105,17 @@ keyboard, reduced-motion, high-zoom, missing-media, and contrast checks.
 
 ### Tests for User Story 2
 
-- [ ] T034 [P] [US2] Create failing keyboard, semantics, reduced-motion, and missing-media browser checks in `apps/web/tests/e2e/brand-accessibility.spec.ts`
-- [ ] T035 [P] [US2] Establish mobile and desktop visual-regression baselines for page and system states in `apps/web/tests/e2e/visual-system.spec.ts`
+- [X] T034 [P] [US2] Create failing keyboard, semantics, reduced-motion, and missing-media browser checks in `apps/web/tests/e2e/brand-accessibility.spec.ts`
+- [X] T035 [P] [US2] Establish mobile and desktop visual-regression baselines for page and system states in `apps/web/tests/e2e/visual-system.spec.ts`
 
 ### Implementation for User Story 2
 
-- [ ] T036 [US2] Document sourced logos, typography, palette, storefront cues, imagery, tone, rights, and proposed extensions in `docs/brand-inventory.md`
-- [ ] T037 [US2] Implement approved color, type, spacing, shape, border, shadow, motion, and layer tokens in `apps/web/src/lib/design/tokens.css`
-- [ ] T038 [P] [US2] Implement global semantic, focus, text-zoom, reduced-motion, and responsive foundations in `apps/web/src/lib/design/global.css`
+- [X] T036 [US2] Document sourced logos, typography, palette, storefront cues, imagery, tone, rights, and proposed extensions in `docs/brand-inventory.md`
+- [X] T037 [US2] Implement approved color, type, spacing, shape, border, shadow, motion, and layer tokens in `apps/web/src/lib/design/tokens.css`
+- [X] T038 [P] [US2] Implement global semantic, focus, text-zoom, reduced-motion, and responsive foundations in `apps/web/src/lib/design/global.css`
 - [ ] T039 [P] [US2] Implement logo and licensed-media rendering with alt, decorative, focal-point, and missing-image behavior in `apps/web/src/lib/components/BrandMark.svelte` and `apps/web/src/lib/components/ResponsiveImage.svelte`
 - [ ] T040 [US2] Apply the component variants and responsive compositions to `apps/web/src/lib/components/` and `apps/web/src/routes/+page.svelte`
-- [ ] T041 [US2] Build a development-only token, typography, control, card, menu, hours, notice, and failure-state catalog in `apps/web/src/routes/system/+page.svelte` and `apps/web/src/routes/system/+page.server.ts`
+- [X] T041 [US2] Build a development-only token, typography, control, card, menu, hours, notice, and failure-state catalog in `apps/web/src/routes/system/+page.svelte` and `apps/web/src/routes/system/+page.server.ts`
 - [ ] T042 [US2] Add approved local font and brand assets with license/provenance records in `apps/web/static/brand/README.md`
 - [ ] T043 [US2] Run and resolve axe, keyboard, 200% text zoom, contrast, reduced-motion, and visual-regression findings recorded in `docs/validation/accessibility-brand.md`
 

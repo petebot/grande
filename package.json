@@ -12,7 +12,9 @@
   "scripts": {
     "dev": "pnpm --parallel --filter './apps/*' run dev",
     "build": "pnpm -r --if-present run build",
-    "check": "pnpm run format:check && pnpm run lint && pnpm run typecheck",
+    "check": "pnpm run format:check && pnpm run lint && pnpm run check:design-system && pnpm run typecheck",
+    "check:design-system": "node --import tsx scripts/check-design-system.ts",
+    "design-system:version": "node --import tsx scripts/check-design-system-version.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
@@ -21,6 +23,8 @@
     "test": "pnpm run test:unit && pnpm run test:e2e",
     "test:unit": "pnpm -r --if-present run test:unit",
     "test:e2e": "pnpm --filter @grande/web --if-present run test:e2e",
+    "test:a11y": "pnpm --filter @grande/web exec playwright test tests/e2e/brand-accessibility.spec.ts",
+    "test:visual": "pnpm --filter @grande/web exec playwright test tests/e2e/visual-system.spec.ts",
     "content:snapshot": "pnpm --filter @grande/content run snapshot",
     "content:snapshot:validate": "pnpm --filter @grande/content run snapshot:validate"
   },

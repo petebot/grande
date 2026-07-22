@@ -61,7 +61,7 @@
     display: grid;
     gap: 0.55rem;
     padding: 1.1rem 0;
-    border-bottom: 1px solid #b9ad9b;
+    border-bottom: var(--border-hairline);
   }
 
   article.sold-out {
@@ -77,7 +77,7 @@
 
   h4 {
     margin: 0;
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: var(--font-family-display);
     font-size: clamp(1.25rem, 5.8vw, 1.75rem);
     line-height: 1.05;
   }

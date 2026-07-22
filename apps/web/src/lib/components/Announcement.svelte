@@ -86,12 +86,12 @@
     justify-content: space-between;
     gap: 1rem;
     padding: 1rem;
-    border-left: 0.4rem solid #245c38;
-    background: #f2e8d8;
+    border-left: 0.4rem solid var(--color-border-strong);
+    background: var(--color-surface-subtle);
   }
 
   aside.urgent {
-    border-left-color: #8a251f;
+    border-left-color: var(--color-notice-urgent);
   }
 
   h2,
@@ -100,8 +100,8 @@
   }
 
   h2 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.25rem;
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-heading-small);
   }
 
   p {

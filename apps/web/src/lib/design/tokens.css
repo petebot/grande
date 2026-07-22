@@ -1,0 +1,74 @@
+:root {
+  /* Primitive colors observed in the supplied storefront-sign photograph. */
+  --primitive-color-sign-ink: #17141c;
+  --primitive-color-sign-tan: #a6855f;
+  --primitive-color-paper: #fff9ec;
+  --primitive-color-paper-warm: #ead9bc;
+  --primitive-color-paper-deep: #d3b483;
+  --primitive-color-ink-muted: #594a3e;
+  --primitive-color-rule: #aa9578;
+
+  /* Semantic color roles. Product UI consumes these roles, not raw colors. */
+  --color-text: var(--primitive-color-sign-ink);
+  --color-text-muted: var(--primitive-color-ink-muted);
+  --color-surface-page: var(--primitive-color-paper);
+  --color-surface-subtle: var(--primitive-color-paper-warm);
+  --color-surface-accent: var(--primitive-color-paper-deep);
+  --color-surface-brand: var(--primitive-color-sign-ink);
+  --color-on-brand: var(--primitive-color-paper);
+  --color-border: var(--primitive-color-rule);
+  --color-border-strong: var(--primitive-color-sign-ink);
+  --color-notice-urgent: var(--primitive-color-sign-tan);
+  --color-focus-ring: var(--primitive-color-sign-ink);
+  --color-focus-gap: var(--primitive-color-paper);
+
+  /* Typography roles. Anton is self-hosted and reserved for the sign-derived mark. */
+  --font-family-brand: 'Anton', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+  --font-family-display: Georgia, 'Times New Roman', serif;
+  --font-family-body:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-small: 0.85rem;
+  --font-size-body: 1rem;
+  --font-size-lead: clamp(1rem, 3vw, 1.2rem);
+  --font-size-heading-small: 1.25rem;
+  --font-size-heading-medium: clamp(1.65rem, 7vw, 2.5rem);
+  --font-size-heading-large: clamp(2.25rem, 11vw, 4rem);
+  --font-size-display: clamp(2.6rem, 13vw, 6.5rem);
+  --line-height-tight: 1;
+  --line-height-display: 0.92;
+  --line-height-body: 1.5;
+  --line-height-reading: 1.6;
+
+  /* Spacing and layout roles. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-section: clamp(3rem, 9vw, 7rem);
+  --width-page: 76rem;
+  --width-reading: 68ch;
+  --width-prose: 60ch;
+  --target-minimum: 2.75rem;
+
+  /* Shape, elevation, focus, motion, and layers. */
+  --radius-small: 0.5rem;
+  --radius-medium: 0.75rem;
+  --radius-pill: 999px;
+  --border-hairline: 1px solid var(--color-border);
+  --border-strong: 2px solid var(--color-border-strong);
+  --shadow-sheet: 0 0.75rem 2.5rem rgb(23 20 28 / 10%);
+  --layer-base: 0;
+  --layer-sticky: 10;
+  --layer-overlay: 20;
+  --motion-fast: 120ms;
+  --motion-standard: 180ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Component-scoped roles for the sign-derived BrandMark. */
+  --brand-mark-ink: var(--primitive-color-sign-ink);
+  --brand-mark-field: var(--primitive-color-sign-tan);
+}

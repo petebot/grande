@@ -35,16 +35,9 @@
 <style>
   :global(html) {
     color-scheme: light;
-    font-family:
-      Inter,
-      ui-sans-serif,
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      sans-serif;
-    background: #f8f0dc;
-    color: #24160f;
+    background: var(--color-surface-subtle);
+    color: var(--color-text);
+    font-family: var(--font-family-body);
   }
 
   :global(body) {
@@ -63,15 +56,15 @@
     box-sizing: border-box;
     width: min(100%, 38rem);
     padding: clamp(2rem, 7vw, 4.5rem);
-    border: 2px solid #24160f;
-    border-radius: 1.5rem;
-    background: #fffaf0;
-    box-shadow: 0.5rem 0.5rem 0 #d94d2a;
+    border: var(--border-strong);
+    border-radius: var(--radius-medium);
+    background: var(--color-surface-page);
+    box-shadow: var(--shadow-sheet);
   }
 
   .eyebrow {
     margin: 0 0 0.75rem;
-    color: #a5371c;
+    color: var(--color-text-muted);
     font-size: 0.8rem;
     font-weight: 800;
     letter-spacing: 0.12em;
@@ -80,7 +73,7 @@
 
   h1 {
     margin: 0;
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: var(--font-family-display);
     font-size: clamp(2.5rem, 10vw, 5.5rem);
     line-height: 0.95;
     letter-spacing: -0.04em;
@@ -95,37 +88,33 @@
 
   .reference {
     margin: 1.5rem 0 0;
-    color: #684d3e;
+    color: var(--color-text-muted);
     font-size: 0.9rem;
     line-height: 1.6;
   }
 
   code {
     overflow-wrap: anywhere;
-    color: #24160f;
+    color: var(--color-text);
     font-size: 0.85em;
   }
 
   a {
     display: inline-flex;
-    min-height: 2.75rem;
+    min-height: var(--target-minimum);
     align-items: center;
     margin-top: 2rem;
     padding: 0 1.1rem;
-    border: 2px solid #24160f;
-    border-radius: 999px;
-    background: #f4bd35;
-    color: #24160f;
+    border: var(--border-strong);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface-brand);
+    color: var(--color-on-brand);
     font-weight: 800;
     text-decoration: none;
   }
 
   a:hover {
-    background: #ffd360;
-  }
-
-  a:focus-visible {
-    outline: 3px solid #176b55;
-    outline-offset: 3px;
+    background: var(--color-surface-accent);
+    color: var(--color-text);
   }
 </style>
