@@ -86,12 +86,12 @@
     justify-content: space-between;
     gap: 1rem;
     padding: 1rem;
-    border-left: 0.4rem solid #245c38;
-    background: #f2e8d8;
+    border-left: 0.4rem solid var(--color-brand-ink);
+    background: var(--color-paper-warm);
   }
 
   aside.urgent {
-    border-left-color: #8a251f;
+    border-left-color: var(--color-brand-tan);
   }
 
   h2,
@@ -100,7 +100,7 @@
   }
 
   h2 {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: var(--font-display);
     font-size: 1.25rem;
   }
 

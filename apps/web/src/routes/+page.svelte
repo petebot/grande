@@ -1,5 +1,6 @@
 <script lang="ts">
   import Announcement from '$lib/components/Announcement.svelte'
+  import BrandMark from '$lib/components/BrandMark.svelte'
   import ContentFreshness from '$lib/components/ContentFreshness.svelte'
   import HoursStatus from '$lib/components/HoursStatus.svelte'
   import MenuSection from '$lib/components/MenuSection.svelte'
@@ -17,6 +18,10 @@
 <Seo view={data.seo} />
 
 <main data-content-source={data.contentSource}>
+  <div class="brand-lockup">
+    <BrandMark label={data.content.business.name} />
+  </div>
+
   <section class="hero" aria-labelledby="page-heading">
     <div class="intro">
       {#if data.content.page.heroEyebrow}
@@ -91,50 +96,28 @@
 </main>
 
 <style>
-  :global(*) {
-    box-sizing: border-box;
-  }
-
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-
-  :global(body) {
-    margin: 0;
-    background: #f4ead9;
-    color: #26372c;
-    font-family:
-      Inter,
-      ui-sans-serif,
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      sans-serif;
-  }
-
-  :global(a:focus-visible) {
-    outline: 3px solid #8a251f;
-    outline-offset: 3px;
-  }
-
   main {
     width: min(100%, 76rem);
     min-height: 100vh;
     margin: 0 auto;
     padding: clamp(1rem, 4vw, 3rem);
-    background: #fffdf7;
+    background: var(--color-paper);
+    box-shadow: var(--shadow-sheet);
   }
 
   main > * + * {
-    margin-top: clamp(3rem, 9vw, 7rem);
+    margin-top: var(--space-section);
+  }
+
+  main > .brand-lockup + .hero {
+    margin-top: clamp(1.5rem, 5vw, 3rem);
   }
 
   .hero {
     display: grid;
     gap: 1.5rem;
     padding-bottom: 2rem;
-    border-bottom: 2px solid currentColor;
+    border-bottom: var(--border-ink);
   }
 
   .intro,
@@ -146,7 +129,7 @@
 
   .eyebrow {
     margin: 0;
-    color: #8a251f;
+    color: var(--color-brand-ink);
     font-size: 0.75rem;
     font-weight: 900;
     letter-spacing: 0.08em;
@@ -155,7 +138,7 @@
   h1,
   h2,
   h3 {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: var(--font-display);
   }
 
   h1 {
@@ -185,7 +168,7 @@
   .story,
   .visit {
     padding: clamp(1.25rem, 5vw, 3rem);
-    background: #f2e8d8;
+    background: var(--color-paper-warm);
   }
 
   .story h2,
@@ -229,7 +212,7 @@
     justify-content: space-between;
     gap: 1rem;
     padding-top: 1.25rem;
-    border-top: 2px solid currentColor;
+    border-top: var(--border-ink);
     font-size: 0.85rem;
   }
 
@@ -247,12 +230,6 @@
     .visit {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 4rem;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    :global(html) {
-      scroll-behavior: auto;
     }
   }
 </style>

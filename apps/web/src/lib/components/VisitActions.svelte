@@ -26,9 +26,9 @@
     align-items: center;
     justify-content: center;
     padding: 0.6rem 0.75rem;
-    border: 2px solid #26372c;
-    border-radius: 999px;
-    color: #26372c;
+    border: var(--border-ink);
+    border-radius: var(--radius-pill);
+    color: var(--color-brand-ink);
     font-weight: 800;
     line-height: 1.15;
     text-align: center;
@@ -36,17 +36,12 @@
   }
 
   a:hover {
-    background: #f2e8d8;
-  }
-
-  a:focus-visible {
-    outline: 3px solid #8a251f;
-    outline-offset: 3px;
+    background: var(--color-paper-warm);
   }
 
   a.primary {
-    background: #26372c;
-    color: #fffdf7;
+    background: var(--color-brand-ink);
+    color: var(--color-paper);
   }
 
   @media (min-width: 48rem) {

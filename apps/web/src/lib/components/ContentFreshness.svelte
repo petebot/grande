@@ -29,9 +29,9 @@
   .freshness {
     margin: 0;
     padding: 0.7rem 0.8rem;
-    border: 1px solid #8a765d;
-    border-radius: 0.5rem;
-    background: #fff9e8;
+    border: var(--border-hairline);
+    border-radius: var(--radius-small);
+    background: var(--color-paper-warm);
     font-size: 0.85rem;
     line-height: 1.4;
   }

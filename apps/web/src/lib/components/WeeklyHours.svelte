@@ -52,7 +52,7 @@
     grid-template-columns: minmax(7rem, 0.8fr) 1.5fr;
     gap: 1rem;
     padding: 0.6rem 0;
-    border-bottom: 1px solid #cfc5b4;
+    border-bottom: var(--border-hairline);
   }
 
   dt {
