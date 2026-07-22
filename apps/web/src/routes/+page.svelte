@@ -3,6 +3,7 @@
   import ContentFreshness from '$lib/components/ContentFreshness.svelte'
   import HoursStatus from '$lib/components/HoursStatus.svelte'
   import MenuSection from '$lib/components/MenuSection.svelte'
+  import Seo from '$lib/components/Seo.svelte'
   import VisitActions from '$lib/components/VisitActions.svelte'
   import WeeklyHours from '$lib/components/WeeklyHours.svelte'
 
@@ -20,10 +21,7 @@
   )
 </script>
 
-<svelte:head>
-  <title>{data.content.page.seoTitle}</title>
-  <meta name="description" content={data.content.page.seoDescription} />
-</svelte:head>
+<Seo content={data.content} siteUrl={data.siteUrl} />
 
 <main data-content-source={data.contentSource}>
   <section class="hero" aria-labelledby="page-heading">
