@@ -15,6 +15,8 @@
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "check": "tsc --project tsconfig.json --noEmit && tsc --project tsconfig.test.json",
+    "snapshot": "tsx ../../scripts/generate-content-snapshot.ts",
+    "snapshot:validate": "vitest run tests/snapshot.test.ts",
     "test:unit": "vitest run --passWithNoTests"
   },
   "devDependencies": {
