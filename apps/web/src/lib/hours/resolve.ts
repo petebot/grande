@@ -1,7 +1,6 @@
 import {
   DAYS_OF_WEEK,
   type BusinessTimezone,
-  type HoursException,
   type ScheduleInterval,
   type WeeklyScheduleDay,
 } from '@grande/content'
@@ -22,7 +21,7 @@ export interface ResolvedDaySchedule {
 }
 
 export interface ActiveHoursException {
-  readonly id: string
+  readonly id?: string
   readonly publicNote?: string
 }
 
@@ -40,11 +39,21 @@ export interface ResolvedHours {
   readonly activeException: ActiveHoursException | null
 }
 
+export interface ResolvableHoursException {
+  readonly id?: string
+  readonly startsOn: string
+  readonly endsOn: string
+  readonly status: 'closed' | 'special-hours'
+  readonly intervals: readonly ScheduleInterval[]
+  readonly publicNote?: string
+  readonly priority: number
+}
+
 export interface ResolveHoursInput {
   readonly now: Date
   readonly timeZone: BusinessTimezone
   readonly weeklySchedule: readonly WeeklyScheduleDay[]
-  readonly hoursExceptions: readonly HoursException[]
+  readonly hoursExceptions: readonly ResolvableHoursException[]
 }
 
 interface LocalDateTime {
@@ -192,7 +201,7 @@ function dayOfWeek(date: string): WeeklyScheduleDay['day'] {
   return DAYS_OF_WEEK[(sundayFirstIndex + 6) % 7]!
 }
 
-function dateSpanDays(exception: HoursException): number {
+function dateSpanDays(exception: ResolvableHoursException): number {
   const [startYear, startMonth, startDay] = parseLocalDate(exception.startsOn)
   const [endYear, endMonth, endDay] = parseLocalDate(exception.endsOn)
 
@@ -204,23 +213,25 @@ function dateSpanDays(exception: HoursException): number {
 
 function exceptionForDate(
   date: string,
-  hoursExceptions: readonly HoursException[],
-): HoursException | undefined {
+  hoursExceptions: readonly ResolvableHoursException[],
+): ResolvableHoursException | undefined {
   return hoursExceptions
     .filter(({ startsOn, endsOn }) => startsOn <= date && endsOn >= date)
     .sort(
       (left, right) =>
         dateSpanDays(left) - dateSpanDays(right) ||
         right.priority - left.priority ||
-        left.id.localeCompare(right.id),
+        (left.id ?? '').localeCompare(right.id ?? ''),
     )[0]
 }
 
-function exceptionSummary(exception: HoursException | undefined): ActiveHoursException | null {
+function exceptionSummary(
+  exception: ResolvableHoursException | undefined,
+): ActiveHoursException | null {
   if (!exception) return null
 
   return {
-    id: exception.id,
+    ...(exception.id ? { id: exception.id } : {}),
     ...(exception.publicNote ? { publicNote: exception.publicNote } : {}),
   }
 }
@@ -228,11 +239,11 @@ function exceptionSummary(exception: HoursException | undefined): ActiveHoursExc
 function intervalsForDate(
   date: string,
   weeklySchedule: readonly WeeklyScheduleDay[],
-  hoursExceptions: readonly HoursException[],
+  hoursExceptions: readonly ResolvableHoursException[],
 ): {
   intervals: readonly ScheduleInterval[]
   source: ResolvedDaySchedule['source']
-  exception: HoursException | undefined
+  exception: ResolvableHoursException | undefined
 } {
   const exception = exceptionForDate(date, hoursExceptions)
 
@@ -254,7 +265,7 @@ function intervalsForDate(
 function resolveDaySchedule(
   date: string,
   weeklySchedule: readonly WeeklyScheduleDay[],
-  hoursExceptions: readonly HoursException[],
+  hoursExceptions: readonly ResolvableHoursException[],
   formatter: Intl.DateTimeFormat,
 ): InternalDaySchedule {
   const selected = intervalsForDate(date, weeklySchedule, hoursExceptions)

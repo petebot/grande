@@ -33,7 +33,7 @@ function graphNode(view: ReturnType<typeof buildSeoView>, type: 'Menu' | 'Restau
 describe('page metadata', () => {
   it('renders crawlable head tags and raw JSON-LD during server rendering', () => {
     const { head } = render(Seo, {
-      props: { content: developmentContentFixture, siteUrl },
+      props: { view: buildSeoView(developmentContentFixture, siteUrl) },
     })
 
     expect(head).toContain(`<title>${developmentContentFixture.page.seoTitle}</title>`)

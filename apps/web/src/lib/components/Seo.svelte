@@ -303,15 +303,7 @@
 </script>
 
 <script lang="ts">
-  let {
-    content,
-    siteUrl,
-  }: {
-    content: NormalizedPublicSiteSnapshot
-    siteUrl: string
-  } = $props()
-
-  const view = $derived(buildSeoView(content, siteUrl))
+  let { view }: { view: SeoView } = $props()
   const structuredData = $derived(serializeStructuredData(view.structuredData))
 </script>
 

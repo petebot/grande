@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { MenuCategory } from '@grande/content'
+  import type { PublicMenuCategory } from '$lib/public-page'
 
   import MenuItem from './MenuItem.svelte'
 
@@ -8,19 +8,19 @@
     categories,
   }: {
     heading: string
-    categories: readonly MenuCategory[]
+    categories: readonly PublicMenuCategory[]
   } = $props()
 </script>
 
 <section class="menu" id="menu" aria-labelledby="menu-heading">
   <h2 id="menu-heading">{heading}</h2>
 
-  {#each categories as category (category.id)}
+  {#each categories as category (category.slug)}
     <section class="category" aria-labelledby={`category-${category.slug}`}>
       <h3 id={`category-${category.slug}`}>{category.name}</h3>
       {#if category.description}<p class="category-description">{category.description}</p>{/if}
       <div class="items">
-        {#each category.items as item (item.id)}
+        {#each category.items as item, index (index)}
           <MenuItem {item} />
         {/each}
       </div>

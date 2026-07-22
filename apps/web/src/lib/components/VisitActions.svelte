@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { BusinessProfile } from '@grande/content'
+  import type { PublicPageBusiness } from '$lib/public-page'
 
-  let { business }: { business: BusinessProfile } = $props()
+  let { business }: { business: PublicPageBusiness } = $props()
 </script>
 
 <nav class="actions" aria-label="Visit actions">
