@@ -46,7 +46,7 @@ representative data required by every story.
 - [x] T009 [P] Create clearly fictional development fixtures covering long copy, missing media, schedule edges, and menu states in `packages/content/test/fixtures/development-content.ts`
 - [x] T010 [P] Write failing normalization and production-provenance tests in `packages/content/tests/normalize.test.ts`
 - [x] T011 Implement deterministic validation, normalization, ordering, URL safety, and price conversion in `packages/content/src/normalize.ts`
-- [ ] T012 Define the single published/draft GROQ projection and query parameters in `packages/content/src/queries.ts`
+- [x] T012 Define the single published/draft GROQ projection and query parameters in `packages/content/src/queries.ts`
 - [ ] T013 [P] Write failing snapshot generation and invalid-fallback tests in `packages/content/tests/snapshot.test.ts`
 - [ ] T014 Implement published snapshot generation with schema/revision metadata and provisional-content rejection in `packages/content/src/snapshot.ts` and `scripts/generate-content-snapshot.ts`
 - [ ] T015 [P] Write failing timeout, malformed-live-response, and full-snapshot-fallback tests in `apps/web/src/lib/server/content.test.ts`
