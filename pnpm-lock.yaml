@@ -77,6 +77,13 @@ importers:
         version: 6.0.3
 
   apps/web:
+    dependencies:
+      '@grande/content':
+        specifier: workspace:*
+        version: link:../../packages/content
+      '@sanity/client':
+        specifier: ^7.24.0
+        version: 7.24.0
     devDependencies:
       '@sveltejs/adapter-vercel':
         specifier: ^6.3.3
