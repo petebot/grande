@@ -1,8 +1,10 @@
 import { readFile } from 'node:fs/promises'
 
 import { env as privateEnvironment } from '$env/dynamic/private'
+import { buildSeoView } from '$lib/components/Seo.svelte'
 import bundledSnapshot from '$lib/content/public-content.snapshot.json?raw'
 import { resolveHours } from '$lib/hours/resolve'
+import { createPublicPageContent } from '$lib/public-page'
 import {
   PublicContentUnavailableError,
   createPublicContentLoader,
@@ -11,17 +13,12 @@ import {
 } from '$lib/server/content'
 import { loadPublicEnvironment } from '$lib/server/env'
 import { error } from '@sveltejs/kit'
-import type { Announcement } from '@grande/content'
 
 import type { PageServerLoad } from './$types'
 
 const E2E_CONTENT_HEADER = 'x-grande-e2e-content'
 
 let liveContentLoader: (() => Promise<LoadedPublicContent>) | undefined
-
-// The first customer slice is fully server-rendered. A later hydration task will
-// introduce a deliberately minimized browser data shape for live status refreshes.
-export const csr = false
 
 function productionContentLoader(): () => Promise<LoadedPublicContent> {
   if (liveContentLoader) return liveContentLoader
@@ -68,22 +65,11 @@ async function testContentLoader(request: Request): Promise<LoadedPublicContent 
   return loader()
 }
 
-function activeAnnouncements(
-  announcements: readonly Announcement[],
-  now: Date,
-): readonly Announcement[] {
-  const instant = now.toISOString()
-
-  return announcements.filter(
-    ({ endsAt, isEnabled, startsAt }) =>
-      isEnabled && startsAt <= instant && (endsAt === undefined || endsAt > instant),
-  )
-}
-
-export const load: PageServerLoad = async ({ request, setHeaders }) => {
+export const load: PageServerLoad = async ({ parent, request, setHeaders }) => {
   try {
     const loadedContent = (await testContentLoader(request)) ?? (await productionContentLoader()())
     const now = requestNow()
+    const { siteUrl } = await parent()
     const currentHours = resolveHours({
       hoursExceptions: loadedContent.content.hoursExceptions,
       now,
@@ -97,11 +83,12 @@ export const load: PageServerLoad = async ({ request, setHeaders }) => {
     })
 
     return {
-      announcements: activeAnnouncements(loadedContent.content.announcements, now),
-      content: loadedContent.content,
+      content: createPublicPageContent(loadedContent.content, now),
       contentSource: loadedContent.contentSource,
       currentHours,
       generatedAt: loadedContent.generatedAt,
+      seo: buildSeoView(loadedContent.content, siteUrl),
+      serverNow: now.toISOString(),
     }
   } catch (caught) {
     if (caught instanceof PublicContentUnavailableError) {

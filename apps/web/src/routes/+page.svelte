@@ -12,16 +12,9 @@
   const address = $derived(
     `${data.content.business.address.street}, ${data.content.business.address.locality}, ${data.content.business.address.region} ${data.content.business.address.postalCode}`,
   )
-  const storyBlocks = $derived(
-    data.content.page.storyBody.map((block) => ({
-      key: block.key,
-      listItem: block.listItem,
-      text: block.children.map(({ text }) => text).join(''),
-    })),
-  )
 </script>
 
-<Seo content={data.content} siteUrl={data.siteUrl} />
+<Seo view={data.seo} />
 
 <main data-content-source={data.contentSource}>
   <section class="hero" aria-labelledby="page-heading">
@@ -34,26 +27,33 @@
     </div>
 
     <div class="decision-panel">
-      <HoursStatus hours={data.currentHours} timeZone={data.content.business.timezone} />
+      <HoursStatus
+        hours={data.currentHours}
+        refreshInput={{
+          hoursExceptions: data.content.hoursExceptions,
+          timeZone: data.content.business.timezone,
+          weeklySchedule: data.content.weeklySchedule,
+        }}
+      />
       <VisitActions business={data.content.business} />
       <ContentFreshness contentSource={data.contentSource} generatedAt={data.generatedAt} />
     </div>
   </section>
 
-  {#if data.announcements.length > 0}
-    <section class="announcements" aria-label="Notices">
-      {#each data.announcements as announcement (announcement.id)}
-        <Announcement {announcement} />
+  {#if data.content.announcements.length > 0}
+    <section class="announcements" aria-label="Notices" aria-live="polite">
+      {#each data.content.announcements as announcement, index (index)}
+        <Announcement {announcement} serverNow={data.serverNow} />
       {/each}
     </section>
   {/if}
 
   <MenuSection heading={data.content.page.menuHeading} categories={data.content.menu} />
 
-  {#if storyBlocks.length > 0}
+  {#if data.content.page.storyBlocks.length > 0}
     <section class="story" aria-labelledby="story-heading">
       <h2 id="story-heading">{data.content.page.storyHeading ?? 'Our story'}</h2>
-      {#each storyBlocks as block (block.key)}
+      {#each data.content.page.storyBlocks as block, index (index)}
         {#if block.listItem}
           <ul><li>{block.text}</li></ul>
         {:else}
@@ -176,6 +176,10 @@
   .announcements {
     display: grid;
     gap: 0.75rem;
+  }
+
+  .announcements:empty {
+    display: none;
   }
 
   .story,

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { MenuItem } from '@grande/content'
+  import type { PublicMenuItem } from '$lib/public-page'
 
-  let { item }: { item: MenuItem } = $props()
+  let { item }: { item: PublicMenuItem } = $props()
 
   const money = new Intl.NumberFormat('en-US', {
     currency: 'USD',

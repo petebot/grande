@@ -1,15 +1,53 @@
 <script lang="ts">
-  import type { BusinessTimezone } from '@grande/content'
+  import { onMount } from 'svelte'
 
-  import type { ResolvedHours } from '$lib/hours/resolve'
+  import { resolveHours, type ResolvedHours, type ResolveHoursInput } from '$lib/hours/resolve'
+
+  const MAX_REFRESH_DELAY_MS = 5 * 60 * 1_000
 
   let {
     hours,
-    timeZone,
+    refreshInput,
   }: {
     hours: ResolvedHours
-    timeZone: BusinessTimezone
+    refreshInput: Omit<ResolveHoursInput, 'now'>
   } = $props()
+
+  let clientHours = $state<ResolvedHours | undefined>()
+  const currentHours = $derived(clientHours ?? hours)
+  const timeZone = $derived(refreshInput.timeZone)
+
+  onMount(() => {
+    let refreshTimer: number | undefined
+
+    function scheduleRefresh(): void {
+      const now = new Date()
+      clientHours = resolveHours({ ...refreshInput, now })
+      const transitionAt = clientHours.nextTransition
+        ? new Date(clientHours.nextTransition.at).getTime()
+        : undefined
+      const delay =
+        transitionAt !== undefined && transitionAt > now.getTime()
+          ? Math.min(MAX_REFRESH_DELAY_MS, transitionAt - now.getTime())
+          : MAX_REFRESH_DELAY_MS
+
+      refreshTimer = window.setTimeout(scheduleRefresh, Math.max(1, delay))
+    }
+
+    function refreshWhenVisible(): void {
+      if (document.visibilityState !== 'visible') return
+      if (refreshTimer) window.clearTimeout(refreshTimer)
+      scheduleRefresh()
+    }
+
+    scheduleRefresh()
+    document.addEventListener('visibilitychange', refreshWhenVisible)
+
+    return () => {
+      if (refreshTimer) window.clearTimeout(refreshTimer)
+      document.removeEventListener('visibilitychange', refreshWhenVisible)
+    }
+  })
 
   function time(isoDateTime: string): string {
     return new Intl.DateTimeFormat('en-US', {
@@ -28,37 +66,43 @@
       year: 'numeric',
     }).format(openingDate)
 
-    if (localDate === hours.localDate) return `Opens at ${time(isoDateTime)}`
+    if (localDate === currentHours.localDate) return `Opens at ${time(isoDateTime)}`
 
     const day = new Intl.DateTimeFormat('en-US', { weekday: 'long', timeZone }).format(openingDate)
     return `Opens ${day} at ${time(isoDateTime)}`
   }
 
-  const statusLabel = $derived(hours.status === 'open' ? 'Open now' : 'Closed')
+  const statusLabel = $derived(currentHours.status === 'open' ? 'Open now' : 'Closed')
   const transitionLabel = $derived(
-    hours.status === 'open' && hours.nextTransition
-      ? `Closes at ${time(hours.nextTransition.at)}`
-      : hours.nextTransition
-        ? opening(hours.nextTransition.at)
+    currentHours.status === 'open' && currentHours.nextTransition
+      ? `Closes at ${time(currentHours.nextTransition.at)}`
+      : currentHours.nextTransition
+        ? opening(currentHours.nextTransition.at)
         : 'Call to confirm today’s hours',
   )
   const todayLabel = $derived(
-    hours.today.intervals.length === 0
+    currentHours.today.intervals.length === 0
       ? 'Closed today'
-      : hours.today.intervals
+      : currentHours.today.intervals
           .map(({ opensAt, closesAt }) => `${time(opensAt)}–${time(closesAt)}`)
           .join(', '),
   )
 </script>
 
-<section class="hours-status" data-testid="hours-status" aria-labelledby="current-hours-heading">
-  <p class:open={hours.status === 'open'} class="status" id="current-hours-heading">
+<section
+  class="hours-status"
+  data-testid="hours-status"
+  aria-atomic="true"
+  aria-labelledby="current-hours-heading"
+  aria-live="polite"
+>
+  <p class:open={currentHours.status === 'open'} class="status" id="current-hours-heading">
     {statusLabel}
   </p>
   <p class="transition">{transitionLabel}</p>
   <p class="today"><strong>Today:</strong> {todayLabel}</p>
-  {#if hours.activeException?.publicNote}
-    <p class="exception">{hours.activeException.publicNote}</p>
+  {#if currentHours.activeException?.publicNote}
+    <p class="exception">{currentHours.activeException.publicNote}</p>
   {/if}
 </section>
 
