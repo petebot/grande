@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolve } from '$app/paths'
   import { page } from '$app/state'
 
   const heading = $derived(page.status === 404 ? 'That page wandered off.' : 'We hit a snag.')
@@ -27,7 +28,7 @@
       </p>
     {/if}
 
-    <a href="/">Back to the homepage</a>
+    <a href={resolve('/')}>Back to the homepage</a>
   </section>
 </main>
 

@@ -17,7 +17,7 @@ function requestEvent(url = 'https://example.test/menu', headers: HeadersInit = 
     request: new Request(url, { headers }),
     route: { id: '/menu' },
     url: new URL(url),
-  } as RequestEvent
+  } as unknown as RequestEvent
 }
 
 describe('createHandle', () => {
