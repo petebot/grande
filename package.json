@@ -25,6 +25,7 @@
     "test:e2e": "pnpm --filter @grande/web --if-present run test:e2e",
     "test:a11y": "pnpm --filter @grande/web exec playwright test tests/e2e/brand-accessibility.spec.ts",
     "test:visual": "pnpm --filter @grande/web exec playwright test tests/e2e/visual-system.spec.ts",
+    "content:approved-snapshot": "node --import tsx scripts/generate-approved-content.ts",
     "content:snapshot": "pnpm --filter @grande/content run snapshot",
     "content:snapshot:validate": "pnpm --filter @grande/content run snapshot:validate"
   },
