@@ -523,6 +523,7 @@ function menuItem(value: unknown, path: string, perspective: ContentPerspective)
     ...identity(source, path, perspective),
     provenance: provenance(source.provenance, `${path}.provenance`, perspective),
     name: text(source.name, `${path}.name`),
+    ...(source.emoji === undefined ? {} : { emoji: text(source.emoji, `${path}.emoji`) }),
     ...(source.description === undefined
       ? {}
       : { description: text(source.description, `${path}.description`) }),

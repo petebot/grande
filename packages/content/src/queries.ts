@@ -145,6 +145,7 @@ export const PUBLIC_SITE_CONTENT_QUERY: string = `{
         ${publicationStateProjection},
         ${provenanceProjection},
         name,
+        defined(emoji) => { emoji },
         defined(description) => { description },
         pricingKind,
         pricingKind == "fixed" => {

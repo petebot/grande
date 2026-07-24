@@ -33,6 +33,7 @@
     display: grid;
     gap: 2.5rem;
     scroll-margin-top: 1rem;
+    margin-top: 5rem;
   }
 
   h2,
@@ -48,7 +49,9 @@
   }
 
   .category {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
   }
 

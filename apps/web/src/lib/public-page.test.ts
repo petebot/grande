@@ -23,6 +23,7 @@ describe('createPublicPageContent', () => {
       status: 'closed',
     })
     expect(publicContent.menu[0]?.items[0]).toMatchObject({
+      emoji: '🌯',
       name: 'The Impossibly Long Named Fictional Burrito Built for Wrapping Tests',
       pricingKind: 'fixed',
     })
