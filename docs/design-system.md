@@ -40,7 +40,8 @@ the current business need.
 
 ### Typography
 
-- **Brand:** self-hosted Anton, used only by `BrandMark`; see `apps/web/static/brand/README.md`.
+- **Brand:** supplied outlined `GRANDE` letter geometry is used by `BrandMark`; self-hosted Anton is
+  retained for supporting identity specimens. See `apps/web/static/brand/README.md`.
 - **Display:** Georgia with Times New Roman fallback for food-led headings.
 - **Body:** system sans-serif stack for operational copy and controls.
 - Semantic size and line-height tokens cover small text, body, lead, headings, and display type.
@@ -55,9 +56,12 @@ with the primary two-column composition introduced at `48rem`. Narrow layouts re
 
 Borders are either a quiet hairline or a two-pixel sign-ink rule. Small and medium radii soften
 operational panels; pill radii are reserved for actions and compact labels. The sheet uses one quiet
-shadow. Focus is a three-pixel ink ring with a paper gap. Motion uses 120ms and 180ms durations with
-a standard easing curve, and global reduced-motion rules remove nonessential movement. Layer tokens
-reserve base, sticky, and overlay levels. Interactive targets use a minimum `2.75rem` (44 CSS px).
+shadow, while isolated food imagery uses a stronger object shadow. Focus is a three-pixel ink ring
+with a paper gap. Interface motion uses 120ms and 180ms
+durations with a standard easing curve. The public hero uses direct, scrubbed scroll progress to
+morph the provisional wordmark from compact to tall while CSS sticky positioning controls its
+release. Reduced motion removes the sticky scene and keeps the compact mark. Layer tokens reserve
+base, sticky, and overlay levels. Interactive targets use a minimum `2.75rem` (44 CSS px).
 
 ## Inventory
 
@@ -69,13 +73,16 @@ use and a stable API.
 
 ### Components
 
-- `BrandMark`: responsive SVG/live-text reconstruction of the photographed sign; one size that scales
-  with its container; accessible image label; provisional artwork status.
+- `BrandMark`: responsive SVG reconstruction using matching compact and tall outlined paths; optional
+  scroll-linked morph; accessible image label; static reduced-motion state; provisional artwork
+  status.
 - `Announcement`: information or urgent notice, optional action, scheduled visibility, responsive
   stacked state on narrow containers.
 - `ContentFreshness`: live-service fallback status; absent when content is live.
 - `HoursStatus`: open/closed, next transition, today's hours, and exception note; announces updates.
-- `MenuItem`: fixed/market pricing, availability, dietary, heat, seasonality, and sold-out states.
+- `MenuItem`: optional decorative emoji, fixed/market pricing, availability, dietary, heat,
+  seasonality, and sold-out states. Emoji precede the visible name but remain hidden from assistive
+  technology so the item name supplies the accessible text without repetition.
 - `MenuSection`: category composition and empty-category tolerance.
 - `VisitActions`: menu, call, directions, and optional ordering actions with keyboard-visible states.
 - `WeeklyHours`: seven-day definition list with closed and overnight interval states.
@@ -88,6 +95,9 @@ use and a stable API.
   the printed sheet without copying its crowded line lengths.
 - **Continuity state:** a saved content snapshot preserves menu and hours when Sanity is unavailable,
   while `ContentFreshness` explains the condition.
+- **Brand reveal:** the landing composition holds the burrito and compact wordmark in a sticky scene,
+  stretches the letters behind the food as the page advances, then releases the completed tall mark
+  into document flow. The burrito remains foreground content throughout.
 
 ### Feature UI
 
@@ -126,6 +136,35 @@ The weekly contract-version workflow compares this adopted version with the cano
 fails visibly when review is required; it never replaces the local contract.
 
 ## Decisions and change history
+
+### 2026-07-23 — Scroll-linked Grande reveal
+
+- Replaced the live-text sign reconstruction with the supplied compact and tall outlined SVG paths.
+- Refreshed both endpoint path sets from the revised user-supplied SVGs so matching path points drive
+  the scroll morph.
+- Added an optional `BrandMark` morph driven by scroll progress and kept sticky/release behavior in
+  page layout CSS.
+- Layered the burrito over the wordmark so `GRANDE` becomes more grande behind the food, then releases
+  with the page at the scene boundary.
+- Lifted the hero composition and made the burrito scale against available viewport height so its
+  full silhouette and bottom shadow remain visible instead of being deliberately cropped.
+- On tall desktop viewports, positioned the wordmark in the upper field and enlarged the burrito
+  upward from its fixed shadow edge to strengthen the layered overlap without reintroducing a crop.
+- Replaced bottom-anchored wordmark offsets with a top anchor and viewport-height cap, preventing
+  tall-phone drift and short-laptop clipping; narrow screens now lift the burrito fluidly with their
+  available height.
+- Kept the supplied artwork provisional pending written business approval.
+- Added a reduced-motion composition with no sticky behavior or morphing.
+- Verified desktop start, intermediate morph, final path geometry, release behavior, and reduced
+  motion. Mobile visual behavior remains unverified in the integrated browser.
+
+### 2026-07-23 — Structured menu emoji
+
+- Added one optional, picker-managed emoji to menu items and placed it before the centered item name.
+- Kept the item name as the semantic heading and marked emoji decorative to avoid repetitive screen
+  reader announcements.
+- Reused existing spacing and typography tokens; no new system foundations or primitives were needed.
+- Added the emoji state to the `/system` menu specimen.
 
 ### 2026-07-22 — Contract 1.0.0 adopted
 

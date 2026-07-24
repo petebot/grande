@@ -61,6 +61,7 @@
   --border-hairline: 1px solid var(--color-border);
   --border-strong: 2px solid var(--color-border-strong);
   --shadow-sheet: 0 0.75rem 2.5rem rgb(23 20 28 / 10%);
+  --shadow-food: 0 0.9rem 1.6rem rgb(0 0 0 / 22%);
   --layer-base: 0;
   --layer-sticky: 10;
   --layer-overlay: 20;

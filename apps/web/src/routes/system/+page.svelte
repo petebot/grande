@@ -71,6 +71,7 @@
     description:
       'Cumin chicken + seasoned rice + black beans + cheese + pineapple salsa + lime crema',
     dietaryLabels: ['gluten-free'],
+    emoji: '🌯',
     heatLevel: 'medium',
     name: 'Tropical Chicken Burrito',
     priceOptions: [{ price: { amountMinor: 1400, currency: 'USD' } }],
@@ -139,8 +140,9 @@
     <div class="brand-sheet">
       <BrandMark label="Grande Burrito — burritos, margaritas, cold beer" />
       <p>
-        Provisional live-text reconstruction. Replace with approved original artwork when the
-        business supplies it.
+        Provisional outlined-path reconstruction. The public hero can morph this compact mark into
+        its supplied tall form; reduced motion retains the compact form. Replace it when the
+        business supplies or approves original artwork.
       </p>
     </div>
   </section>

@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 const MOBILE_VIEWPORT = { width: 390, height: 844 }
+const FIXED_NOW = new Date('2030-07-15T16:00:00.000Z')
 const FIXTURE_ITEM_NAME = 'The Impossibly Long Named Fictional Burrito Built for Wrapping Tests'
 const FIXTURE_PHONE = '(207) 555-0100'
 const FIXTURE_ADDRESS = '123 Example Street, Sampletown, ME 04000'
@@ -14,6 +15,7 @@ test.describe('decide and visit', () => {
   test('puts status, menu, price, location, call, and directions on the mobile page', async ({
     page,
   }) => {
+    await page.clock.install({ time: FIXED_NOW })
     const response = await page.goto('/')
     const html = await response!.text()
 
@@ -63,6 +65,7 @@ test.describe('decide and visit', () => {
   })
 
   test('uses one complete deployment snapshot when Sanity is forced offline', async ({ page }) => {
+    await page.clock.install({ time: FIXED_NOW })
     await page.setExtraHTTPHeaders({ 'x-grande-e2e-content': 'outage' })
     const response = await page.goto('/')
 

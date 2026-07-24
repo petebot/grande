@@ -59,6 +59,7 @@ export interface SanityContentLoaderOptions extends Omit<
   readonly projectId: string
   readonly dataset: string
   readonly apiVersion: string
+  readonly token?: string
 }
 
 export class PublicContentUnavailableError extends Error {
@@ -216,7 +217,7 @@ export function createPublicContentLoader(
   }
 }
 
-/** Creates the production published-content loader backed by Sanity's API CDN. */
+/** Creates the production published-content loader backed by Sanity's API. */
 export function createSanityContentLoader(
   options: SanityContentLoaderOptions,
 ): () => Promise<LoadedPublicContent> {
@@ -225,7 +226,8 @@ export function createSanityContentLoader(
     dataset: options.dataset,
     apiVersion: options.apiVersion,
     perspective: 'published',
-    useCdn: true,
+    useCdn: options.token === undefined,
+    ...(options.token === undefined ? {} : { token: options.token }),
   })
 
   return createPublicContentLoader({

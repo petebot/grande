@@ -194,6 +194,7 @@ export interface MenuItemSeasonality {
 
 export interface MenuItemBase extends ProvenancedContent {
   readonly name: string
+  readonly emoji?: string
   readonly description?: string
   readonly dietaryLabels: readonly DietaryLabel[]
   readonly heatLevel?: HeatLevel

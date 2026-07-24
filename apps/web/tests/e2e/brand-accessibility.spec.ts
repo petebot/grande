@@ -34,27 +34,28 @@ test.describe('brand accessibility guardrails', () => {
     }
   })
 
-  test('renders the sign-derived brand mark with its sampled accessible palette', async ({
-    page,
-  }) => {
+  test('renders the sign-derived brand mark on an accessible hero surface', async ({ page }) => {
     await page.goto('/')
 
     await expect(
       page.getByRole('img', { name: 'Fixture Fiesta Test Kitchen — NOT A REAL RESTAURANT' }),
     ).toBeVisible()
-    await expect.poll(() => page.evaluate(() => document.fonts.check('16px Anton'))).toBe(true)
 
     const palette = await page.getByTestId('brand-mark').evaluate((element) => {
       const style = getComputedStyle(element)
+      const canvas = element.closest('main')
+
       return {
-        background: style.backgroundColor,
+        canvas: canvas ? getComputedStyle(canvas).backgroundColor : null,
         ink: style.color,
+        mark: style.backgroundColor,
       }
     })
 
     expect(palette).toEqual({
-      background: 'rgb(166, 133, 95)',
+      canvas: 'rgb(255, 249, 236)',
       ink: 'rgb(23, 20, 28)',
+      mark: 'rgba(0, 0, 0, 0)',
     })
   })
 

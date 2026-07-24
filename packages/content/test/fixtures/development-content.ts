@@ -157,6 +157,7 @@ export const developmentContentFixture = {
           publicationState: 'published',
           provenance: DEVELOPMENT_PROVENANCE,
           name: 'The Impossibly Long Named Fictional Burrito Built for Wrapping Tests',
+          emoji: '🌯',
           description:
             'A completely invented combination of moon beans, comet rice, imaginary salsa, and several extra clauses whose only purpose is to reveal awkward line lengths, price collisions, truncated descriptions, and fragile responsive layouts.',
           pricingKind: 'fixed',

@@ -14,7 +14,9 @@
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
+    "@sanity/ui": "^3.3.5",
     "@sanity/vision": "^6.5.0",
+    "emoji-picker-react": "^4.19.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "sanity": "^6.5.0",

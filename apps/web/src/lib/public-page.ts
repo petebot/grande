@@ -38,6 +38,7 @@ export interface PublicMenuItemBase {
   readonly availability: MenuAvailability
   readonly description?: string
   readonly dietaryLabels: readonly DietaryLabel[]
+  readonly emoji?: string
   readonly heatLevel?: HeatLevel
   readonly name: string
   readonly seasonality?: MenuItemSeasonality
@@ -137,6 +138,7 @@ export function createPublicPageContent(
           availability: item.availability,
           ...(item.description ? { description: item.description } : {}),
           dietaryLabels: item.dietaryLabels,
+          ...(item.emoji ? { emoji: item.emoji } : {}),
           ...(item.heatLevel ? { heatLevel: item.heatLevel } : {}),
           name: item.name,
           ...(item.seasonality ? { seasonality: item.seasonality } : {}),

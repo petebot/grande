@@ -25,6 +25,7 @@
   "dependencies": {
     "@fontsource/anton": "5.3.0",
     "@grande/content": "workspace:*",
-    "@sanity/client": "^7.24.0"
+    "@sanity/client": "^7.24.0",
+    "gsap": "^3.15.0"
   }
 }

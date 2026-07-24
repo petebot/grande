@@ -11,7 +11,7 @@ import {
   createSanityContentLoader,
   type LoadedPublicContent,
 } from '$lib/server/content'
-import { loadPublicEnvironment } from '$lib/server/env'
+import { loadServerEnvironment } from '$lib/server/env'
 import { error } from '@sveltejs/kit'
 
 import type { PageServerLoad } from './$types'
@@ -23,10 +23,11 @@ let liveContentLoader: (() => Promise<LoadedPublicContent>) | undefined
 function productionContentLoader(): () => Promise<LoadedPublicContent> {
   if (liveContentLoader) return liveContentLoader
 
-  const environment = loadPublicEnvironment()
+  const environment = loadServerEnvironment()
   liveContentLoader = createSanityContentLoader({
-    ...environment.sanity,
+    ...environment.public.sanity,
     fallbackSnapshot: bundledSnapshot,
+    ...(environment.sanityViewerToken === null ? {} : { token: environment.sanityViewerToken }),
   })
 
   return liveContentLoader

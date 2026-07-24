@@ -22,7 +22,10 @@
 
 <article class:sold-out={item.availability === 'sold-out'}>
   <div class="heading-row">
-    <h4>{item.name}</h4>
+    <h4>
+      {#if item.emoji}<span class="emoji" aria-hidden="true">{item.emoji}</span>{/if}
+      <span>{item.name}</span>
+    </h4>
     {#if item.availability === 'sold-out'}
       <span class="availability">Sold out</span>
     {/if}
@@ -62,6 +65,7 @@
     gap: 0.55rem;
     padding: 1.1rem 0;
     border-bottom: var(--border-hairline);
+    text-align: center;
   }
 
   article.sold-out {
@@ -71,15 +75,23 @@
   .heading-row {
     display: flex;
     align-items: baseline;
-    justify-content: space-between;
+    justify-content: center;
     gap: 1rem;
   }
 
   h4 {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-2);
     margin: 0;
     font-family: var(--font-family-display);
     font-size: clamp(1.25rem, 5.8vw, 1.75rem);
     line-height: 1.05;
+    text-align: center;
+  }
+
+  .emoji {
+    font-family: var(--font-family-body);
   }
 
   .availability {
@@ -90,10 +102,14 @@
     text-transform: uppercase;
   }
 
+  .description {
+    max-width: 65ch;
+  }
   .description,
   .market-price {
     margin: 0;
     line-height: 1.45;
+    text-align: center;
   }
 
   .prices,
@@ -104,7 +120,8 @@
   }
 
   .prices {
-    display: grid;
+    display: flex;
+    justify-content: center;
     gap: 0.25rem;
   }
 

@@ -107,6 +107,7 @@ describe('normalizePublicSiteContent', () => {
     expect(first.menu.map(({ sortOrder }) => sortOrder)).toEqual([10, 20])
     expect(first.menu[0]?.items.map(({ sortOrder }) => sortOrder)).toEqual([10, 20, 30])
     expect(normalizedLongItem?.name).toBe(originalLongItem.name)
+    expect(normalizedLongItem?.emoji).toBe('🌯')
     expect(normalizedLongItem?.pricingKind).toBe('fixed')
 
     if (normalizedLongItem?.pricingKind !== 'fixed') {
