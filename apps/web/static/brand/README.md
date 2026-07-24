@@ -22,6 +22,16 @@ No source photograph is published from this directory.
 - **Accessibility:** provide a descriptive `alt` only when the image content is meaningful; keep it
   decorative if future artwork is purely ornamental
 
+## Browser favicon
+
+- **Implementation:** `src/lib/assets/favicon.svg`
+- **Method:** the compact outlined `G` path from `BrandMark` centered on the sampled sign field;
+  standalone SVG colors repeat the documented provisional palette because browser icons cannot
+  consume application CSS tokens
+- **Status:** provisional portfolio study pending owner approval or original logo files
+- **Do not:** call this an official brand asset or remove the provisional provenance without owner
+  confirmation
+
 ## Display font
 
 - **Family:** Anton

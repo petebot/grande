@@ -1,7 +1,10 @@
 <script lang="ts">
+  import { resolve } from '$app/paths'
+
   import Announcement from '$lib/components/Announcement.svelte'
   import BrandMark from '$lib/components/BrandMark.svelte'
   import ContentFreshness from '$lib/components/ContentFreshness.svelte'
+  import GoogleRating from '$lib/components/GoogleRating.svelte'
   import HoursStatus from '$lib/components/HoursStatus.svelte'
   import MenuSection from '$lib/components/MenuSection.svelte'
   import Seo from '$lib/components/Seo.svelte'
@@ -92,7 +95,7 @@
   {/if}
 
   <section class="visit" aria-labelledby="location-heading">
-    <div>
+    <div class="visit-details">
       <h2 id="location-heading">{data.content.page.locationHeading}</h2>
       <address>{address}</address>
       <p>
@@ -105,6 +108,9 @@
           Get directions to this location
         </a>
       </p>
+      {#if data.googlePlacesEnabled}
+        <GoogleRating fallbackUrl={data.content.business.directionsUrl} />
+      {/if}
     </div>
     <div>
       <h3>Weekly hours</h3>
@@ -113,8 +119,14 @@
   </section>
 
   <footer>
-    <strong>{data.content.business.name}</strong>
-    <span>{address}</span>
+    <div class="footer-identity">
+      <strong>{data.content.business.name}</strong>
+      <span>{address}</span>
+    </div>
+    <nav aria-label="Legal information">
+      <a href={resolve('/privacy')}>Privacy</a>
+      <a href={resolve('/terms')}>Terms</a>
+    </nav>
   </footer>
 </main>
 
@@ -264,6 +276,21 @@
     gap: 2rem;
   }
 
+  .visit-details {
+    display: grid;
+    align-content: start;
+    gap: var(--space-3);
+  }
+
+  .visit-details > h2,
+  .visit-details > p {
+    margin: 0;
+  }
+
+  .visit-details :global(.google-rating) {
+    margin-top: var(--space-3);
+  }
+
   .visit h3 {
     margin-top: 0;
     font-size: 1.5rem;
@@ -291,9 +318,28 @@
     font-size: 0.85rem;
   }
 
-  footer span {
+  .footer-identity {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  .footer-identity span {
     max-width: 28ch;
-    text-align: right;
+  }
+
+  footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--space-4);
+  }
+
+  footer a {
+    min-height: var(--target-minimum);
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-text);
+    font-weight: 800;
   }
 
   @media (min-width: 48rem) {

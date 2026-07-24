@@ -37,6 +37,10 @@ test.describe('decide and visit', () => {
       'href',
       'https://example.com/development-only/directions',
     )
+    await expect(page.getByTestId('google-rating')).toHaveAttribute('data-google-status', 'live')
+    await expect(page.getByTestId('google-rating')).toContainText('4.8')
+    await expect(page.getByTestId('google-rating')).toContainText('143 reviews')
+    await expect(page.getByTestId('google-rating').getByText('Google Maps')).toBeVisible()
 
     const pageWidth = await page.evaluate(() => ({
       document: document.documentElement.scrollWidth,
@@ -61,6 +65,7 @@ test.describe('decide and visit', () => {
         'tel:+12075550100',
       )
       await expect(page.getByRole('link', { name: 'Get directions', exact: true })).toBeVisible()
+      await expect(page.getByTestId('google-rating')).toContainText('See reviews on Google Maps')
     })
   })
 

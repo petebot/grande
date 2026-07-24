@@ -88,6 +88,12 @@ export const load: PageServerLoad = async ({ parent, request, setHeaders }) => {
       contentSource: loadedContent.contentSource,
       currentHours,
       generatedAt: loadedContent.generatedAt,
+      googlePlacesEnabled:
+        privateEnvironment.GRANDE_E2E_MODE === '1' ||
+        Boolean(
+          privateEnvironment.GOOGLE_PLACES_API_KEY?.trim() &&
+          privateEnvironment.GOOGLE_PLACE_ID?.trim(),
+        ),
       seo: buildSeoView(loadedContent.content, siteUrl),
       serverNow: now.toISOString(),
     }
