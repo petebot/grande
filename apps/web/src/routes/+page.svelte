@@ -141,8 +141,8 @@
   }
 
   .brand-stage {
-    --scene-art-width: min(100%, 44rem, calc((100svh - var(--space-4)) * 0.703125));
-    --brand-art-width: min(calc(100% + clamp(3rem, 10vw, 8rem)), 52rem);
+    --scene-art-width: min(100%, 44rem, calc((100svh - clamp(12rem, 24svh, 18rem)) * 0.703125));
+    --brand-art-width: min(100%, 52rem, calc((100svh - var(--space-6)) * 0.82308));
 
     position: sticky;
     top: 0;
@@ -152,7 +152,7 @@
 
   .brand-lockup {
     position: absolute;
-    bottom: var(--space-2);
+    top: 0;
     left: 50%;
     width: var(--brand-art-width);
     transform: translateX(-50%);
@@ -211,7 +211,7 @@
 
   .hero-photo {
     position: absolute;
-    bottom: clamp(-11rem, -19svh, -9rem);
+    bottom: calc(clamp(1rem, 4vw, 3rem) + var(--space-6));
     left: 50%;
     width: var(--scene-art-width);
     margin: 0;
@@ -297,8 +297,8 @@
   }
 
   @media (min-width: 48rem) {
-    .hero-photo {
-      bottom: clamp(-15rem, -24svh, -12rem);
+    .brand-stage {
+      --scene-art-width: min(100%, 49rem, calc((100svh - clamp(10rem, 18svh, 13rem)) * 0.703125));
     }
 
     .hero-copy {
@@ -310,6 +310,12 @@
     .visit {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 4rem;
+    }
+  }
+
+  @media (max-width: 47.999rem) {
+    .hero-photo {
+      bottom: clamp(3rem, 14svh, 8rem);
     }
   }
 

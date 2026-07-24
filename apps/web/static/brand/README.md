@@ -7,7 +7,8 @@ No source photograph is published from this directory.
 - **Implementation:** `src/lib/components/BrandMark.svelte`
 - **Evidence:** user-supplied storefront sign photo
   `CleanShot 2026-07-22 at 14.24.37@2x.png`
-- **Method:** responsive SVG geometry and live text; no raster pixels are embedded
+- **Method:** responsive inline SVG using the user-supplied compact and tall outlined letter paths;
+  no raster pixels are embedded
 - **Status:** provisional portfolio study pending owner approval or original logo files
 - **Accessible name:** supplied from the canonical business name in structured content
 - **Do not:** call this the official logo, export it for production signage, or remove

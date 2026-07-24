@@ -140,10 +140,19 @@ fails visibly when review is required; it never replaces the local contract.
 ### 2026-07-23 — Scroll-linked Grande reveal
 
 - Replaced the live-text sign reconstruction with the supplied compact and tall outlined SVG paths.
+- Refreshed both endpoint path sets from the revised user-supplied SVGs so matching path points drive
+  the scroll morph.
 - Added an optional `BrandMark` morph driven by scroll progress and kept sticky/release behavior in
   page layout CSS.
 - Layered the burrito over the wordmark so `GRANDE` becomes more grande behind the food, then releases
   with the page at the scene boundary.
+- Lifted the hero composition and made the burrito scale against available viewport height so its
+  full silhouette and bottom shadow remain visible instead of being deliberately cropped.
+- On tall desktop viewports, positioned the wordmark in the upper field and enlarged the burrito
+  upward from its fixed shadow edge to strengthen the layered overlap without reintroducing a crop.
+- Replaced bottom-anchored wordmark offsets with a top anchor and viewport-height cap, preventing
+  tall-phone drift and short-laptop clipping; narrow screens now lift the burrito fluidly with their
+  available height.
 - Kept the supplied artwork provisional pending written business approval.
 - Added a reduced-motion composition with no sticky behavior or morphing.
 - Verified desktop start, intermediate morph, final path geometry, release behavior, and reduced
