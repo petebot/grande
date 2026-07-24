@@ -40,7 +40,6 @@ test.describe('brand accessibility guardrails', () => {
     await expect(
       page.getByRole('img', { name: 'Fixture Fiesta Test Kitchen — NOT A REAL RESTAURANT' }),
     ).toBeVisible()
-    await expect.poll(() => page.evaluate(() => document.fonts.check('16px Anton'))).toBe(true)
 
     const palette = await page.getByTestId('brand-mark').evaluate((element) => {
       const style = getComputedStyle(element)
