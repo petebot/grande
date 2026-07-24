@@ -19,6 +19,7 @@ test.describe('public visual system baselines', () => {
   test('preserves the complete public-page composition', async ({ page }) => {
     await page.goto('/')
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+    await expect(page.getByTestId('google-rating')).toHaveAttribute('data-google-status', 'live')
 
     await expect(page).toHaveScreenshot('public-page.png', SCREENSHOT_OPTIONS)
   })
@@ -29,6 +30,7 @@ test.describe('public visual system baselines', () => {
     await page.setExtraHTTPHeaders({ 'x-grande-e2e-content': 'outage' })
     await page.goto('/')
     await expect(page.getByTestId('content-freshness')).toBeVisible()
+    await expect(page.getByTestId('google-rating')).toHaveAttribute('data-google-status', 'live')
 
     await expect(page).toHaveScreenshot('stale-content-state.png', SCREENSHOT_OPTIONS)
   })

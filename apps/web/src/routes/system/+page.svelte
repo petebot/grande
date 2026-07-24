@@ -4,11 +4,13 @@
   import Announcement from '$lib/components/Announcement.svelte'
   import BrandMark from '$lib/components/BrandMark.svelte'
   import ContentFreshness from '$lib/components/ContentFreshness.svelte'
+  import GoogleRating from '$lib/components/GoogleRating.svelte'
   import HoursStatus from '$lib/components/HoursStatus.svelte'
   import MenuItem from '$lib/components/MenuItem.svelte'
   import VisitActions from '$lib/components/VisitActions.svelte'
   import WeeklyHours from '$lib/components/WeeklyHours.svelte'
   import type { ResolvedHours } from '$lib/hours/resolve'
+  import type { GooglePlaceSummary } from '$lib/google-place'
   import type { PublicAnnouncement, PublicMenuItem, PublicPageBusiness } from '$lib/public-page'
 
   let { data } = $props()
@@ -65,6 +67,13 @@
     startsAt: '2030-07-15T00:00:00.000Z',
     title: 'Special hours today',
   } satisfies PublicAnnouncement
+
+  const googleSummary = {
+    attributions: [],
+    rating: 4.8,
+    reviewCount: 143,
+    reviewsUrl: 'https://www.google.com/maps/place/fixture/reviews',
+  } satisfies GooglePlaceSummary
 
   const availableItem = {
     availability: 'available',
@@ -213,6 +222,7 @@
         }}
       />
       <VisitActions {business} />
+      <GoogleRating fallbackUrl={business.directionsUrl} initialSummary={googleSummary} />
       <ContentFreshness contentSource="snapshot" generatedAt={fixedNow} />
     </div>
   </section>

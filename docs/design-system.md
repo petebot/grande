@@ -34,9 +34,10 @@ The source of truth is `apps/web/src/lib/design/tokens.css`. It uses three layer
 ### Color
 
 The observed sign pair is violet-black `#17141c` on warm tan `#a6855f`, measured at approximately
-5.33:1 contrast. Paper surfaces extend the palette without introducing a competing brand color.
-There is one light theme; forced-colors behavior is supported for focus, but dark mode is not part of
-the current business need.
+5.33:1 contrast. Paper surfaces extend the palette without introducing a competing brand color. The
+Google Maps attribution gray is isolated as a provider-mandated semantic text role rather than
+treated as a brand color. There is one light theme; forced-colors behavior is supported for focus,
+but dark mode is not part of the current business need.
 
 ### Typography
 
@@ -80,6 +81,9 @@ use and a stable API.
   stacked state on narrow containers.
 - `ContentFreshness`: live-service fallback status; absent when content is live.
 - `HoursStatus`: open/closed, next transition, today's hours, and exception note; announces updates.
+- `GoogleRating`: optional, no-store Google Maps rating enrichment with loading, live, and
+  unavailable states; retains a direct Maps link when live data fails; includes provider-required
+  attribution in the same visually separated container.
 - `MenuItem`: optional decorative emoji, fixed/market pricing, availability, dietary, heat,
   seasonality, and sold-out states. Emoji precede the visible name but remain hidden from assistive
   technology so the item name supplies the accessible text without repetition.
@@ -95,14 +99,17 @@ use and a stable API.
   the printed sheet without copying its crowded line lengths.
 - **Continuity state:** a saved content snapshot preserves menu and hours when Sanity is unavailable,
   while `ContentFreshness` explains the condition.
+- **External enrichment:** Google Maps social proof loads independently from the cacheable public
+  page; its failure never replaces or blocks restaurant-controlled operational facts.
 - **Brand reveal:** the landing composition holds the burrito and compact wordmark in a sticky scene,
   stretches the letters behind the food as the page advances, then releases the completed tall mark
   into document flow. The burrito remains foreground content throughout.
 
 ### Feature UI
 
-The public hero, story, visit block, footer, error screen, and `/system` catalog are feature-level
-compositions. They use system tokens and components but are not generalized prematurely.
+The public hero, story, visit block, footer, privacy and terms documents, error screen, and `/system`
+catalog are feature-level compositions. They use system tokens and components but are not
+generalized prematurely.
 
 ## Accessibility and resilience
 
@@ -136,6 +143,30 @@ The weekly contract-version workflow compares this adopted version with the cano
 fails visibly when review is required; it never replaces the local contract.
 
 ## Decisions and change history
+
+### 2026-07-24 — Sign-derived G favicon
+
+- Replaced the framework placeholder favicon with a standalone browser icon derived from the exact
+  compact `G` path used by `BrandMark`.
+- Centered the ink-colored letter on the warm sign field so the small icon retains the storefront
+  mark's established contrast and character.
+- Repeated the two provisional sampled color values inside the standalone SVG because browser icons
+  cannot consume application CSS tokens; no new palette values or system components were added.
+- Kept the favicon provisional pending original artwork or written business approval. The `/system`
+  specimen is unchanged because the favicon appears in browser chrome rather than the page UI.
+
+### 2026-07-24 — Optional Google Maps rating enrichment
+
+- Added a clearly attributed `GoogleRating` card for the public rating, review count, and direct
+  reviews link while keeping Sanity as the authority for hours, phone, address, and menu content.
+- Loaded Google Maps content through a server-only, no-store endpoint so the API key is not exposed
+  and the cacheable primary page remains independent from third-party availability.
+- Added a provider-mandated attribution text token, loading/live/unavailable states, and the
+  component's representative live state to `/system`.
+- Added public privacy and terms pages linked from the footer to document the optional provider and
+  its policies.
+- Kept the integration disabled unless both Google Places environment values are present; partial
+  configuration and provider failures degrade to the existing restaurant experience.
 
 ### 2026-07-23 — Scroll-linked Grande reveal
 
