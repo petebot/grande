@@ -1,39 +1,108 @@
 <script lang="ts">
-  let { label = 'Grande Burrito' }: { label?: string } = $props()
+  import { onMount } from 'svelte'
+
+  import {
+    BRAND_GEOMETRY,
+    BRAND_LETTERS,
+    COMPACT_LETTER_PATHS,
+    RAIL_PATH,
+    TALL_LETTER_PATHS,
+  } from '$lib/design/brand-morph'
+
+  let { animated = false, label = 'Grande Burrito' }: { animated?: boolean; label?: string } =
+    $props()
+
+  let root: HTMLDivElement
+
+  onMount(() => {
+    if (!animated) return
+
+    let disposed = false
+    let cleanup: (() => void) | undefined
+
+    async function setupMorph() {
+      const [{ gsap }, { MorphSVGPlugin }, { ScrollTrigger }] = await Promise.all([
+        import('gsap'),
+        import('gsap/MorphSVGPlugin'),
+        import('gsap/ScrollTrigger'),
+      ])
+      if (disposed) return
+
+      gsap.registerPlugin(MorphSVGPlugin, ScrollTrigger)
+      const scene = root.closest<HTMLElement>('[data-brand-scene]')
+      if (!scene) return
+
+      const media = gsap.matchMedia()
+      media.add('(prefers-reduced-motion: no-preference)', () => {
+        const context = gsap.context(() => {
+          const timeline = gsap.timeline({
+            defaults: { ease: 'none' },
+            scrollTrigger: {
+              end: 'bottom bottom',
+              invalidateOnRefresh: true,
+              scrub: 0.35,
+              start: 'top top',
+              trigger: scene,
+            },
+          })
+
+          for (const letter of BRAND_LETTERS) {
+            timeline.to(
+              root.querySelector(`[data-brand-letter="${letter}"]`),
+              { morphSVG: TALL_LETTER_PATHS[letter] },
+              0,
+            )
+          }
+
+          timeline.to(
+            root.querySelector('[data-bottom-rail]'),
+            { attr: { transform: `translate(0 ${BRAND_GEOMETRY.tallBottomRailY})` } },
+            0,
+          )
+        }, root)
+
+        return () => context.revert()
+      })
+
+      cleanup = () => media.revert()
+      ScrollTrigger.refresh()
+    }
+
+    void setupMorph()
+
+    return () => {
+      disposed = true
+      cleanup?.()
+    }
+  })
 </script>
 
-<div class="brand-mark" data-testid="brand-mark">
-  <svg viewBox="0 0 960 430" role="img" aria-label={label}>
-    <defs>
-      <pattern id="brand-rivets" width="40" height="40" patternUnits="userSpaceOnUse">
-        <circle cx="20" cy="20" r="5" class="rivet" />
-      </pattern>
-    </defs>
-
-    <rect class="rail" x="40" y="24" width="880" height="42" rx="6" />
-    <rect x="50" y="24" width="860" height="42" fill="url(#brand-rivets)" />
-
-    <text class="wordmark" x="480" y="300" text-anchor="middle">GRANDE</text>
-
-    <rect class="rail" x="40" y="316" width="880" height="42" rx="6" />
-    <rect x="50" y="316" width="860" height="42" fill="url(#brand-rivets)" />
-
-    <g class="descriptor" aria-hidden="true">
-      <text x="192" y="410" text-anchor="middle">BURRITOS</text>
-      <rect x="336" y="388" width="14" height="14" rx="1" />
-      <text x="480" y="410" text-anchor="middle">MARGARITAS</text>
-      <rect x="658" y="388" width="14" height="14" rx="1" />
-      <text x="795" y="410" text-anchor="middle">COLD BEER</text>
+<div class:animated class="brand-mark" data-testid="brand-mark" bind:this={root}>
+  <svg
+    aria-label={label}
+    fill="none"
+    role="img"
+    viewBox={`0 0 ${BRAND_GEOMETRY.width} ${animated ? BRAND_GEOMETRY.tallHeight : BRAND_GEOMETRY.compactHeight}`}
+  >
+    <path class="ink" d={RAIL_PATH} />
+    <g transform={`translate(${BRAND_GEOMETRY.letterOffsetX} ${BRAND_GEOMETRY.letterOffsetY})`}>
+      {#each BRAND_LETTERS as letter (letter)}
+        <path class="ink" d={COMPACT_LETTER_PATHS[letter]} data-brand-letter={letter} />
+      {/each}
     </g>
+    <path
+      class="ink"
+      d={RAIL_PATH}
+      data-bottom-rail
+      transform={`translate(0 ${BRAND_GEOMETRY.compactBottomRailY})`}
+    />
   </svg>
 </div>
 
 <style>
   .brand-mark {
     width: min(100%, 60rem);
-    padding: clamp(0.5rem, 2.5vw, 1.25rem);
-    overflow: hidden;
-    background: var(--brand-mark-field);
+    margin: 0 auto;
     color: var(--brand-mark-ink);
   }
 
@@ -41,37 +110,17 @@
     display: block;
     width: 100%;
     height: auto;
+    overflow: visible;
   }
 
-  .rail,
-  .wordmark,
-  .descriptor {
+  .ink {
     fill: currentColor;
   }
 
-  .rivet {
-    fill: var(--brand-mark-field);
-  }
-
-  .wordmark,
-  .descriptor {
-    font-family: var(--font-family-brand);
-    font-weight: 400;
-  }
-
-  .wordmark {
-    font-size: 258px;
-    letter-spacing: 7px;
-  }
-
-  .descriptor {
-    font-size: 43px;
-    letter-spacing: 1px;
-  }
-
-  .descriptor rect {
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 5;
+  @media (prefers-reduced-motion: reduce) {
+    .brand-mark.animated {
+      aspect-ratio: 737.29 / 327.67;
+      overflow: hidden;
+    }
   }
 </style>

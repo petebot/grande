@@ -13,6 +13,14 @@ No source photograph is published from this directory.
 - **Do not:** call this the official logo, export it for production signage, or remove
   the provisional provenance without owner confirmation
 
+## Product hero image
+
+- **Expected file path:** `static/brand/burrito-hero.png`
+- **Consumption:** `src/routes/+page.svelte` hero section
+- **Status:** optional local product photography; if omitted, the landing hero hides the image
+- **Accessibility:** provide a descriptive `alt` only when the image content is meaningful; keep it
+  decorative if future artwork is purely ornamental
+
 ## Display font
 
 - **Family:** Anton
