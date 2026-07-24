@@ -39,9 +39,14 @@ export const businessProfile = defineType({
       name: 'timezone',
       type: 'string',
       initialValue: 'America/New_York',
-      validation: (rule) => rule.required().custom((value) => value === 'America/New_York' || 'Use America/New_York'),
+      validation: (rule) =>
+        rule.required().custom((value) => value === 'America/New_York' || 'Use America/New_York'),
     }),
-    defineField({ name: 'orderingUrl', type: 'url', validation: (rule) => rule.uri({ scheme: ['https'] }) }),
+    defineField({
+      name: 'orderingUrl',
+      type: 'url',
+      validation: (rule) => rule.uri({ scheme: ['https'] }),
+    }),
     defineField({
       name: 'directionsUrl',
       type: 'url',
@@ -87,7 +92,11 @@ export const businessProfile = defineType({
         layout: 'radio',
       },
     }),
-    defineField({ name: 'lastReviewedAt', type: 'datetime', validation: (rule) => rule.required() }),
+    defineField({
+      name: 'lastReviewedAt',
+      type: 'datetime',
+      validation: (rule) => rule.required(),
+    }),
   ],
   preview: {
     select: {

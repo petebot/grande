@@ -13,8 +13,18 @@ export const menuCategory = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({ name: 'description', type: 'text', rows: 3 }),
-    defineField({ name: 'sortOrder', type: 'number', initialValue: 0, validation: (rule) => rule.required().integer() }),
-    defineField({ name: 'isActive', type: 'boolean', initialValue: true, validation: (rule) => rule.required() }),
+    defineField({
+      name: 'sortOrder',
+      type: 'number',
+      initialValue: 0,
+      validation: (rule) => rule.required().integer(),
+    }),
+    defineField({
+      name: 'isActive',
+      type: 'boolean',
+      initialValue: true,
+      validation: (rule) => rule.required(),
+    }),
   ],
   orderings: [
     {

@@ -12,7 +12,12 @@ export const media = defineType({
       options: { hotspot: true },
       validation: (rule) => rule.required(),
     }),
-    defineField({ name: 'decorative', type: 'boolean', initialValue: false, validation: (rule) => rule.required() }),
+    defineField({
+      name: 'decorative',
+      type: 'boolean',
+      initialValue: false,
+      validation: (rule) => rule.required(),
+    }),
     defineField({
       name: 'alt',
       type: 'string',

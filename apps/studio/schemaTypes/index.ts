@@ -11,13 +11,13 @@ import { provenance } from './provenance'
 import { weeklySchedule } from './weeklySchedule'
 
 export const schemaTypes: SchemaTypeDefinition[] = [
-	provenance,
-	businessProfile,
-	weeklySchedule,
-	hoursException,
-	menuCategory,
-	menuItem,
-	announcement,
-	pageContent,
-	media,
+  provenance,
+  businessProfile,
+  weeklySchedule,
+  hoursException,
+  menuCategory,
+  menuItem,
+  announcement,
+  pageContent,
+  media,
 ]

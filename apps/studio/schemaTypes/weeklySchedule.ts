@@ -36,8 +36,16 @@ export const weeklySchedule = defineType({
                 defineArrayMember({
                   type: 'object',
                   fields: [
-                    defineField({ name: 'opensAt', type: 'string', validation: (rule) => rule.required().regex(/^(?:[01]\\d|2[0-3]):[0-5]\\d$/) }),
-                    defineField({ name: 'closesAt', type: 'string', validation: (rule) => rule.required().regex(/^(?:[01]\\d|2[0-3]):[0-5]\\d$/) }),
+                    defineField({
+                      name: 'opensAt',
+                      type: 'string',
+                      validation: (rule) => rule.required().regex(/^(?:[01]\\d|2[0-3]):[0-5]\\d$/),
+                    }),
+                    defineField({
+                      name: 'closesAt',
+                      type: 'string',
+                      validation: (rule) => rule.required().regex(/^(?:[01]\\d|2[0-3]):[0-5]\\d$/),
+                    }),
                   ],
                   preview: {
                     select: { opensAt: 'opensAt', closesAt: 'closesAt' },

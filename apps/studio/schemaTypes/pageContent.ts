@@ -49,7 +49,12 @@ export const pageContent = defineType({
     defineField({ name: 'menuHeading', type: 'string', validation: (rule) => rule.required() }),
     defineField({ name: 'locationHeading', type: 'string', validation: (rule) => rule.required() }),
     defineField({ name: 'seoTitle', type: 'string', validation: (rule) => rule.required() }),
-    defineField({ name: 'seoDescription', type: 'text', rows: 2, validation: (rule) => rule.required() }),
+    defineField({
+      name: 'seoDescription',
+      type: 'text',
+      rows: 2,
+      validation: (rule) => rule.required(),
+    }),
     defineField({ name: 'socialImage', type: 'reference', to: [{ type: 'media' }] }),
   ],
   preview: {

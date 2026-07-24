@@ -29,11 +29,25 @@ export const announcement = defineType({
       type: 'object',
       fields: [
         defineField({ name: 'label', type: 'string', validation: (rule) => rule.required() }),
-        defineField({ name: 'url', type: 'url', validation: (rule) => rule.required().uri({ allowRelative: true, scheme: ['https'] }) }),
+        defineField({
+          name: 'url',
+          type: 'url',
+          validation: (rule) => rule.required().uri({ allowRelative: true, scheme: ['https'] }),
+        }),
       ],
     }),
-    defineField({ name: 'priority', type: 'number', initialValue: 0, validation: (rule) => rule.required().integer() }),
-    defineField({ name: 'isEnabled', type: 'boolean', initialValue: true, validation: (rule) => rule.required() }),
+    defineField({
+      name: 'priority',
+      type: 'number',
+      initialValue: 0,
+      validation: (rule) => rule.required().integer(),
+    }),
+    defineField({
+      name: 'isEnabled',
+      type: 'boolean',
+      initialValue: true,
+      validation: (rule) => rule.required(),
+    }),
   ],
   preview: {
     select: { title: 'title', subtitle: 'kind', enabled: 'isEnabled' },
