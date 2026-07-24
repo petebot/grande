@@ -14,6 +14,7 @@ test.describe('public visual system baselines', () => {
 
   test.beforeEach(async ({ page }) => {
     await page.clock.install({ time: FIXED_NOW })
+    await page.emulateMedia({ colorScheme: 'light' })
   })
 
   test('preserves the complete public-page composition', async ({ page }) => {
@@ -38,5 +39,22 @@ test.describe('public visual system baselines', () => {
     await expect(page.getByTestId('design-system')).toBeVisible()
 
     await expect(page).toHaveScreenshot('design-system.png', SCREENSHOT_OPTIONS)
+  })
+
+  test('preserves the complete public-page composition in dark mode', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'dark' })
+    await page.goto('/')
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+
+    await expect(page).toHaveScreenshot('public-page-dark.png', SCREENSHOT_OPTIONS)
+  })
+
+  test('preserves the living design-system specimen in dark mode', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'dark' })
+    await page.goto('/system')
+    await expect(page.getByTestId('design-system')).toBeVisible()
+    await expect(page.getByText('Dark system palette active.')).toBeVisible()
+
+    await expect(page).toHaveScreenshot('design-system-dark.png', SCREENSHOT_OPTIONS)
   })
 })

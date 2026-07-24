@@ -89,11 +89,16 @@
   } satisfies PublicMenuItem
 
   const colors = [
-    { label: 'Text / sign ink', token: '--color-text', value: 'var(--color-text)' },
+    { label: 'Primary text / brand ink', token: '--color-text', value: 'var(--color-text)' },
     {
       label: 'Brand field / sign tan',
       token: '--brand-mark-field',
       value: 'var(--brand-mark-field)',
+    },
+    {
+      label: 'Outer canvas',
+      token: '--color-surface-canvas',
+      value: 'var(--color-surface-canvas)',
     },
     {
       label: 'Page surface',
@@ -152,15 +157,22 @@
       <p>Foundations</p>
       <h2 id="color-heading">Color roles</h2>
     </div>
-    <ul class="swatches">
-      {#each colors as color (color.token)}
-        <li>
-          <span class="swatch" style={`--swatch: ${color.value}`}></span>
-          <strong>{color.label}</strong>
-          <code>{color.token}</code>
-        </li>
-      {/each}
-    </ul>
+    <div class="color-specimen">
+      <p class="theme-note">
+        <strong class="theme-light">Light system palette active.</strong>
+        <strong class="theme-dark">Dark system palette active.</strong>
+        Colors follow the operating-system preference automatically; no site preference is stored.
+      </p>
+      <ul class="swatches">
+        {#each colors as color (color.token)}
+          <li>
+            <span class="swatch" style={`--swatch: ${color.value}`}></span>
+            <strong>{color.label}</strong>
+            <code>{color.token}</code>
+          </li>
+        {/each}
+      </ul>
+    </div>
   </section>
 
   <section class="specimen-section" aria-labelledby="type-heading">
@@ -349,6 +361,26 @@
     color: var(--color-text-muted);
   }
 
+  .color-specimen {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .theme-note {
+    max-width: var(--width-prose);
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .theme-note strong {
+    display: block;
+    color: var(--color-text);
+  }
+
+  .theme-note .theme-dark {
+    display: none;
+  }
+
   .swatches {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
@@ -469,7 +501,7 @@
 
   button:hover:not(:disabled) {
     background: var(--color-surface-accent);
-    color: var(--color-text);
+    color: var(--color-on-accent);
   }
 
   button:active:not(:disabled) {
@@ -526,6 +558,16 @@
 
     button:active:not(:disabled) {
       transform: none;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .theme-note .theme-light {
+      display: none;
+    }
+
+    .theme-note .theme-dark {
+      display: block;
     }
   }
 </style>

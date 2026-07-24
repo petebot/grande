@@ -35,8 +35,11 @@ The source of truth is `apps/web/src/lib/design/tokens.css`. It uses three layer
 
 The observed sign pair is violet-black `#17141c` on warm tan `#a6855f`, measured at approximately
 5.33:1 contrast. Paper surfaces extend the palette without introducing a competing brand color.
-There is one light theme; forced-colors behavior is supported for focus, but dark mode is not part of
-the current business need.
+The light theme retains that original paper-and-sign composition. The dark theme follows the operating
+system through `prefers-color-scheme`, maps semantic surfaces onto a violet-black night canvas, and
+inverts the provisional wordmark to paper ink. The system does not store or override a person's OS
+preference. Forced-colors behavior remains supported for focus. Night-surface extensions are system
+colors, not approved additions to the restaurant's provisional brand palette.
 
 ### Typography
 
@@ -115,13 +118,14 @@ Known gaps to close in T043:
 - Complete the recorded axe, keyboard-only, 200% text zoom, and reduced-motion audit.
 - Confirm the sign reconstruction and sampled colors against original brand files or written business
   approval. Until then the mark remains provisional and is not presented as official artwork.
-- Dark mode is intentionally omitted; the restaurant's paper-and-sign identity is a light system.
 
 ## Specimen and validation
 
 Run the web app with `pnpm --filter @grande/web dev`, then open `/system`. The route contains tokens,
-type, controls, component states, the decision pattern, menu content, notices, and failure/fallback
-states. It returns 404 in production unless the explicit browser-test environment is active.
+the active system-theme indicator, type, controls, component states, the decision pattern, menu
+content, notices, and failure/fallback states. Switch the operating-system appearance to inspect the
+light and dark semantic mappings. The route returns 404 in production unless the explicit
+browser-test environment is active.
 
 ```sh
 pnpm check:design-system
@@ -136,6 +140,18 @@ The weekly contract-version workflow compares this adopted version with the cano
 fails visibly when review is required; it never replaces the local contract.
 
 ## Decisions and change history
+
+### 2026-07-24 — System light and dark themes
+
+- Declared native light/dark support and followed `prefers-color-scheme` without adding a competing
+  site-level preference or storing user state.
+- Kept the established light palette unchanged and added semantic dark mappings for canvas, page,
+  raised, accent, text, border, focus, shadow, and brand-mark roles.
+- Inverted the provisional outlined wordmark to paper ink in dark mode while retaining the sampled
+  tan for branded actions and accents.
+- Added the active theme and canvas role to `/system`, plus light/dark palette, keyboard-focus,
+  contrast, and visual-regression coverage at mobile and desktop sizes.
+- Retained forced-colors and reduced-motion behavior; the provisional brand-approval caveat remains.
 
 ### 2026-07-23 — Scroll-linked Grande reveal
 
@@ -182,7 +198,7 @@ Preserve the following for the case study:
 - `apps/web/src/lib/design/tokens.css` and `/system` screenshots for foundation evidence.
 - `BrandMark`, `MenuItem`, and `HoursStatus` states for representative components.
 - The decision panel and stale-content state for product-specific composition and resilience.
-- Visual baselines at mobile and desktop sizes for responsive-system evidence.
+- Light and dark visual baselines at mobile and desktop sizes for responsive-system evidence.
 - This history entry as an example of a design decision propagating through tokens, components,
   feature screens, documentation, and tests.
 

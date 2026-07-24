@@ -7,15 +7,20 @@
   --primitive-color-paper-deep: #d3b483;
   --primitive-color-ink-muted: #594a3e;
   --primitive-color-rule: #aa9578;
+  --primitive-color-night-canvas: #0f0d12;
+  --primitive-color-night-raised: #2d2633;
+  --primitive-color-night-muted: #d8c8ae;
 
   /* Semantic color roles. Product UI consumes these roles, not raw colors. */
   --color-text: var(--primitive-color-sign-ink);
   --color-text-muted: var(--primitive-color-ink-muted);
+  --color-surface-canvas: var(--primitive-color-paper-warm);
   --color-surface-page: var(--primitive-color-paper);
   --color-surface-subtle: var(--primitive-color-paper-warm);
   --color-surface-accent: var(--primitive-color-paper-deep);
   --color-surface-brand: var(--primitive-color-sign-ink);
   --color-on-brand: var(--primitive-color-paper);
+  --color-on-accent: var(--primitive-color-sign-ink);
   --color-border: var(--primitive-color-rule);
   --color-border-strong: var(--primitive-color-sign-ink);
   --color-notice-urgent: var(--primitive-color-sign-tan);
@@ -72,4 +77,26 @@
   /* Component-scoped roles for the sign-derived BrandMark. */
   --brand-mark-ink: var(--primitive-color-sign-ink);
   --brand-mark-field: var(--primitive-color-sign-tan);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: var(--primitive-color-paper);
+    --color-text-muted: var(--primitive-color-night-muted);
+    --color-surface-canvas: var(--primitive-color-night-canvas);
+    --color-surface-page: var(--primitive-color-sign-ink);
+    --color-surface-subtle: var(--primitive-color-night-raised);
+    --color-surface-accent: var(--primitive-color-sign-tan);
+    --color-surface-brand: var(--primitive-color-sign-tan);
+    --color-on-brand: var(--primitive-color-sign-ink);
+    --color-on-accent: var(--primitive-color-sign-ink);
+    --color-border: var(--primitive-color-rule);
+    --color-border-strong: var(--primitive-color-paper-warm);
+    --color-notice-urgent: var(--primitive-color-sign-tan);
+    --color-focus-ring: var(--primitive-color-paper);
+    --color-focus-gap: var(--primitive-color-sign-ink);
+    --shadow-sheet: 0 0.75rem 2.5rem rgb(0 0 0 / 45%);
+    --shadow-food: 0 0.9rem 1.6rem rgb(0 0 0 / 50%);
+    --brand-mark-ink: var(--primitive-color-paper);
+  }
 }

@@ -34,8 +34,7 @@
 
 <style>
   :global(html) {
-    color-scheme: light;
-    background: var(--color-surface-subtle);
+    background: var(--color-surface-canvas);
     color: var(--color-text);
     font-family: var(--font-family-body);
   }
@@ -115,6 +114,6 @@
 
   a:hover {
     background: var(--color-surface-accent);
-    color: var(--color-text);
+    color: var(--color-on-accent);
   }
 </style>
