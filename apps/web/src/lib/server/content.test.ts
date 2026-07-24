@@ -3,12 +3,20 @@ import {
   serializePublishedSnapshot,
   type NormalizedPublicSiteSnapshot,
 } from '@grande/content'
+import { createClient } from '@sanity/client'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+
+const { sanityFetch } = vi.hoisted(() => ({ sanityFetch: vi.fn() }))
+
+vi.mock('@sanity/client', () => ({
+  createClient: vi.fn(() => ({ fetch: sanityFetch })),
+}))
 
 import {
   PUBLIC_CONTENT_CACHE_CONTROL,
   PublicContentUnavailableError,
   createPublicContentLoader,
+  createSanityContentLoader,
 } from './content'
 import {
   DEVELOPMENT_REFERENCE_NOW,
@@ -80,6 +88,7 @@ function serializedFallback(overrides: Partial<NormalizedPublicSiteSnapshot> = {
 
 afterEach(() => {
   vi.useRealTimers()
+  vi.clearAllMocks()
 })
 
 describe('createPublicContentLoader', () => {
@@ -210,5 +219,34 @@ describe('createPublicContentLoader', () => {
       snapshotFailure: 'invalid-snapshot',
     })
     expect(JSON.stringify(error)).not.toContain('sensitive provider detail')
+  })
+})
+
+describe('createSanityContentLoader', () => {
+  it('uses an authenticated non-CDN client when a server-only token is available', async () => {
+    const live = publishedSnapshot({ contentRevision: 'authenticated-live-revision' })
+    sanityFetch.mockResolvedValue(live)
+
+    const loadPublicContent = createSanityContentLoader({
+      projectId: 'w6vleqf7',
+      dataset: 'development',
+      apiVersion: '2026-07-21',
+      token: 'server-only-viewer-token',
+      fallbackSnapshot: serializedFallback(),
+      now: () => new Date(DEVELOPMENT_REFERENCE_NOW),
+    })
+
+    await expect(loadPublicContent()).resolves.toMatchObject({
+      contentSource: 'live',
+      content: { contentRevision: 'authenticated-live-revision' },
+    })
+    expect(createClient).toHaveBeenCalledWith({
+      projectId: 'w6vleqf7',
+      dataset: 'development',
+      apiVersion: '2026-07-21',
+      perspective: 'published',
+      token: 'server-only-viewer-token',
+      useCdn: false,
+    })
   })
 })
